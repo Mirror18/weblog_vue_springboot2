@@ -74,11 +74,23 @@ public class TestController {
 //        throw new BizException(ResponseCodeEnum.PRODUCT_NOT_FOUND);
 //    }
 
+//    @PostMapping("/test")
+//    @ApiOperationLog(description = "测试接口")
+//    public Response<Object> test(@RequestBody @Validated User user, BindingResult bindingResult) {
+//        // 主动定义一个运行时异常，分母不能为零
+//        int i = 1 / 0;
+//        return Response.success();
+//    }
+
+//    @PostMapping("/test")
+//    @ApiOperationLog(description = "测试接口")
+//    public Response<Object> test(@RequestBody @Validated User user) {
+//        return Response.success();
+//    }
+
     @PostMapping("/test")
     @ApiOperationLog(description = "测试接口")
-    public Response<Object> test(@RequestBody @Validated User user, BindingResult bindingResult) {
-        // 主动定义一个运行时异常，分母不能为零
-        int i = 1 / 0;
+    public Response<Object> test(@RequestBody @Validated User user) {
         return Response.success();
     }
 
