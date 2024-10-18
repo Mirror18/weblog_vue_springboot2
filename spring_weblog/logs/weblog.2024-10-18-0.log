@@ -1,0 +1,7 @@
+2024-10-18 21:41:03.084 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Starting WeblogWebApplicationTests using Java 1.8.0_301 on mirror-cat with PID 30944 (started by mirror in C:\project\weblog_2\spring_weblog\weblog-web)
+2024-10-18 21:41:03.085 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - The following profiles are active: prod
+2024-10-18 21:41:03.964 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Started WeblogWebApplicationTests in 1.177 seconds (JVM running for 1.815)
+2024-10-18 21:41:04.107 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Info 级别日志
+2024-10-18 21:41:04.116 [main] WARN  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Warn 级别日志
+2024-10-18 21:41:04.116 [main] ERROR com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Error 级别日志
+2024-10-18 21:41:04.116 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行带有占位符日志，作者：mirror
