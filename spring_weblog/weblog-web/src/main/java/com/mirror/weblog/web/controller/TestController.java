@@ -3,6 +3,7 @@ package com.mirror.weblog.web.controller;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
 import com.mirror.weblog.common.enums.ResponseCodeEnum;
 import com.mirror.weblog.common.exception.BizException;
+import com.mirror.weblog.common.utils.JsonUtil;
 import com.mirror.weblog.common.utils.Response;
 import com.mirror.weblog.web.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.validation.FieldError;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.stream.Collectors;
 
 /**
@@ -88,10 +93,24 @@ public class TestController {
 //        return Response.success();
 //    }
 
+//    @PostMapping("/test")
+//    @ApiOperationLog(description = "测试接口")
+//    public Response<Object> test(@RequestBody @Validated User user) {
+//        return Response.success();
+//    }
+
     @PostMapping("/test")
     @ApiOperationLog(description = "测试接口")
     public Response<Object> test(@RequestBody @Validated User user) {
-        return Response.success();
+        // 打印入参
+        log.info(JsonUtil.toJsonString(user));
+
+        // 设置三种日期字段值
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateDate(LocalDate.now());
+        user.setTime(LocalTime.now());
+
+        return Response.success(user);
     }
 
 }
