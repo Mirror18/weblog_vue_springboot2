@@ -16,13 +16,16 @@
     <version>${revision}</version>
     <name>weblog-springboot</name>
     <!-- 项目描述 -->
-    <description>前后端分离博客 Weblog By 犬小哈</description>
+    <description>前后端分离博客 Weblog By mirror</description>
 
     <!-- 多模块项目父工程打包模式必须指定为 pom -->
     <packaging>pom</packaging>
 
     <!-- 子模块管理 -->
     <modules>
+        <module>weblog-web</module>
+        <module>weblog-module-admin</module>
+        <module>weblog-module-common</module>
     </modules>
 
 
@@ -30,33 +33,76 @@
     <properties>
         <!-- 项目版本号 -->
         <revision>0.0.1-SNAPSHOT</revision>
-        <java.version>21</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven 相关 -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <!-- 依赖包版本 -->
+        <lombok.version>1.18.28</lombok.version>
+        <guava.version>31.1-jre</guava.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
 
     <!-- 统一依赖管理 -->
     <dependencyManagement>
 
+        <dependencies>
+            <dependency>
+                <groupId>com.mirror</groupId>
+                <artifactId>weblog-module-admin</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.mirror</groupId>
+                <artifactId>weblog-module-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 常用工具库 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>
         <!-- 统一插件管理 -->
         <pluginManagement>
-
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
         </pluginManagement>
     </build>
 
-    <!-- 使用阿里云的 Maven 仓库源，提升包下载速度 -->
-    <repositories>
-        <repository>
-            <id>aliyunmaven</id>
-            <name>aliyun</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </repository>
-    </repositories>
+<!--    &lt;!&ndash; 使用阿里云的 Maven 仓库源，提升包下载速度 &ndash;&gt;-->
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>aliyunmaven</id>-->
+<!--            <name>aliyun</name>-->
+<!--            <url>https://maven.aliyun.com/repository/public</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 </project>
