@@ -1,4 +1,10 @@
 spring:
+  jackson:
+    # 设置后台返参，若字段值为 null, 则不返回
+    default-property-inclusion: non_null
+    # 设置日期字段格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    
   profiles:
     # 激活环境
     active: dev
