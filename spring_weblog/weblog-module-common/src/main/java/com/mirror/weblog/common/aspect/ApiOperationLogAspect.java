@@ -27,12 +27,14 @@ public class ApiOperationLogAspect {
      * 以自定义 @ApiOperationLog 注解为切点，
      * 凡是添加 @ApiOperationLog 的方法，
      * 都会执行环绕中的代码
-     * */
+     */
     @Pointcut("@annotation(com.mirror.weblog.common.aspect.ApiOperationLog)")
-    public void apiOperationLog() {}
+    public void apiOperationLog() {
+    }
 
     /**
      * 环绕
+     *
      * @param joinPoint
      * @return
      * @throws Throwable
@@ -44,7 +46,9 @@ public class ApiOperationLogAspect {
             long startTime = System.currentTimeMillis();
 
             // MDC,类似于local thread，日志中用的
+            // traceId 表示跟踪 ID， 值这里直接用的 UUID
             MDC.put("traceId", UUID.randomUUID().toString());
+
 
             // 获取被请求的类和方法
             String className = joinPoint.getTarget().getClass().getSimpleName();
@@ -80,6 +84,7 @@ public class ApiOperationLogAspect {
 
     /**
      * 获取注解的描述信息
+     *
      * @param joinPoint
      * @return
      */
@@ -99,6 +104,7 @@ public class ApiOperationLogAspect {
 
     /**
      * 转 JSON 字符串
+     *
      * @return
      */
     private Function<Object, String> toJsonStr() {

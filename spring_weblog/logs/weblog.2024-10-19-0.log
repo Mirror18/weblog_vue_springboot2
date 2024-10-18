@@ -1,0 +1,43 @@
+[TraceId: ] 2024-10-19 02:34:13.957 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Starting WeblogWebApplicationTests using Java 1.8.0_301 on mirror-cat with PID 33040 (started by mirror in C:\project\weblog_2\spring_weblog\weblog-web)
+[TraceId: ] 2024-10-19 02:34:13.957 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - The following profiles are active: prod
+[TraceId: ] 2024-10-19 02:34:15.038 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Started WeblogWebApplicationTests in 1.36 seconds (JVM running for 1.982)
+[TraceId: ] 2024-10-19 02:34:15.233 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Info 级别日志
+[TraceId: ] 2024-10-19 02:34:15.234 [main] WARN  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Warn 级别日志
+[TraceId: ] 2024-10-19 02:34:15.234 [main] ERROR com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Error 级别日志
+[TraceId: ] 2024-10-19 02:34:15.234 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行带有占位符日志，作者：mirror
+[TraceId: ] 2024-10-19 02:38:50.668 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Starting WeblogWebApplicationTests using Java 1.8.0_301 on mirror-cat with PID 33584 (started by mirror in C:\project\weblog_2\spring_weblog\weblog-web)
+[TraceId: ] 2024-10-19 02:38:50.669 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - The following profiles are active: prod
+[TraceId: ] 2024-10-19 02:38:51.745 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - Started WeblogWebApplicationTests in 1.362 seconds (JVM running for 1.993)
+[TraceId: ] 2024-10-19 02:38:51.921 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Info 级别日志
+[TraceId: ] 2024-10-19 02:38:51.921 [main] WARN  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Warn 级别日志
+[TraceId: ] 2024-10-19 02:38:51.921 [main] ERROR com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行 Error 级别日志
+[TraceId: ] 2024-10-19 02:38:51.921 [main] INFO  com.mirror.weblog.web.WeblogWebApplicationTests - 这是一行带有占位符日志，作者：mirror
+[TraceId: ] 2024-10-19 02:39:24.889 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - Starting WeblogWebApplication using Java 1.8.0_301 on mirror-cat with PID 29844 (C:\project\weblog_2\spring_weblog\weblog-web\target\classes started by mirror in C:\project\weblog_2\spring_weblog)
+[TraceId: ] 2024-10-19 02:39:24.891 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - The following profiles are active: prod
+[TraceId: ] 2024-10-19 02:39:25.382 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[TraceId: ] 2024-10-19 02:39:25.388 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[TraceId: ] 2024-10-19 02:39:25.388 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[TraceId: ] 2024-10-19 02:39:25.431 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[TraceId: ] 2024-10-19 02:39:25.431 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 520 ms
+[TraceId: ] 2024-10-19 02:39:25.617 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[TraceId: ] 2024-10-19 02:39:25.622 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - Started WeblogWebApplication in 0.984 seconds (JVM running for 1.526)
+[TraceId: ] 2024-10-19 02:39:37.567 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[TraceId: ] 2024-10-19 02:39:37.567 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[TraceId: ] 2024-10-19 02:39:37.567 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+[TraceId: 60dfb975-af2a-4669-9443-0bed29c8ea97] 2024-10-19 02:39:37.675 [http-nio-8080-exec-1] INFO  c.m.weblog.common.aspect.ApiOperationLogAspect - ====== 请求开始: [测试接口], 入参: {"username":"函燕","sex":100}, 请求类: TestController, 请求方法: test =================================== 
+[TraceId: 60dfb975-af2a-4669-9443-0bed29c8ea97] 2024-10-19 02:39:37.682 [http-nio-8080-exec-1] INFO  com.mirror.weblog.web.controller.TestController - 当前traceId: 60dfb975-af2a-4669-9443-0bed29c8ea97
+[TraceId: 60dfb975-af2a-4669-9443-0bed29c8ea97] 2024-10-19 02:39:37.683 [http-nio-8080-exec-1] INFO  c.m.weblog.common.aspect.ApiOperationLogAspect - ====== 请求结束: [测试接口], 耗时: 22ms, 出参: {"username":"函燕","sex":100} =================================== 
+[TraceId: ] 2024-10-19 02:40:58.992 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - Starting WeblogWebApplication using Java 1.8.0_301 on mirror-cat with PID 33380 (C:\project\weblog_2\spring_weblog\weblog-web\target\classes started by mirror in C:\project\weblog_2\spring_weblog)
+[TraceId: ] 2024-10-19 02:40:58.993 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - The following profiles are active: prod
+[TraceId: ] 2024-10-19 02:40:59.482 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[TraceId: ] 2024-10-19 02:40:59.486 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[TraceId: ] 2024-10-19 02:40:59.486 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[TraceId: ] 2024-10-19 02:40:59.532 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[TraceId: ] 2024-10-19 02:40:59.532 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 518 ms
+[TraceId: ] 2024-10-19 02:40:59.717 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[TraceId: ] 2024-10-19 02:40:59.721 [main] INFO  com.mirror.weblog.web.WeblogWebApplication - Started WeblogWebApplication in 0.99 seconds (JVM running for 1.535)
+[TraceId: ] 2024-10-19 02:41:03.553 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[TraceId: ] 2024-10-19 02:41:03.553 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[TraceId: ] 2024-10-19 02:41:03.554 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[TraceId: 14960028-8082-4621-896d-a9550b90f489] 2024-10-19 02:41:03.637 [http-nio-8080-exec-1] INFO  c.m.weblog.common.aspect.ApiOperationLogAspect - ====== 请求开始: [测试接口], 入参: {"username":"函燕","sex":100}, 请求类: TestController, 请求方法: test =================================== 
+[TraceId: 14960028-8082-4621-896d-a9550b90f489] 2024-10-19 02:41:03.643 [http-nio-8080-exec-1] INFO  c.m.weblog.common.aspect.ApiOperationLogAspect - ====== 请求结束: [测试接口], 耗时: 14ms, 出参: {"username":"函燕","sex":100} =================================== 
