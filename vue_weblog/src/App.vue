@@ -1,6 +1,7 @@
 <!-- html 代码 -->
 <template>
-  <h1>Hello, Vue 3 !</h1>
+<!--  <h1>Hello, Vue 3 !</h1>-->
+  <router-view></router-view>
 </template>
 
 <!--js 代码, setup 标识通常和组合式 API 搭配使用, 用于告诉 Vue 需要在编译时进行一些处理，让我们可以更简洁地使用组合式 API-->
