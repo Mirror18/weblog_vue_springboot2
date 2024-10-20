@@ -26,6 +26,7 @@
         <module>weblog-web</module>
         <module>weblog-module-admin</module>
         <module>weblog-module-common</module>
+        <module>weblog-module-jwt</module>
     </modules>
 
 
@@ -65,6 +66,11 @@
                 <version>${revision}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.mirror</groupId>
+                <artifactId>weblog-module-jwt</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- 常用工具库 -->
             <dependency>
                 <groupId>com.google.guava</groupId>

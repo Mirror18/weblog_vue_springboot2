@@ -6,26 +6,13 @@
     <parent>
         <groupId>com.mirror</groupId>
         <artifactId>weblog-springboot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>weblog-module-admin</artifactId>
-    <name>weblog-module-admin</name>
-    <description>weblog-admin (负责管理后台相关功能)</description>
-
-
+    <artifactId>weblog-module-jwt</artifactId>
+    <description>jwt模块，管理用户认证，鉴权</description>
 
     <dependencies>
-        <dependency>
-            <groupId>com.mirror</groupId>
-            <artifactId>weblog-module-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mirror</groupId>
-            <artifactId>weblog-module-jwt</artifactId>
-        </dependency>
-
         <!-- 免写冗余的 Java 样板式代码 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
