@@ -18,3 +18,10 @@ spring:
     user:
       name: admin
       password: 123456
+
+jwt:
+  # 签发人
+  issuer: mirror
+  # 秘钥
+  secret: FwEQmdctWwf0Gx7Tb0nUtQ7ZA9fB5io5+gLH6qedlyUvA24IzsI7YoSzzcMZxEX/+AaNpxdjII+HIfKZAN2H2A==
+
