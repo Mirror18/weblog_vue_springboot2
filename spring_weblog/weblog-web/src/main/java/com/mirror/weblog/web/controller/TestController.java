@@ -99,19 +99,19 @@ public class TestController {
 //        return Response.success();
 //    }
 
-//    @PostMapping("/test")
-//    @ApiOperationLog(description = "测试接口")
-//    public Response<Object> test(@RequestBody @Validated User user) {
-//        // 打印入参
-//        log.info(JsonUtil.toJsonString(user));
-//
-//        // 设置三种日期字段值
-//        user.setCreateTime(LocalDateTime.now());
-//        user.setUpdateDate(LocalDate.now());
-//        user.setTime(LocalTime.now());
-//
-//        return Response.success(user);
-//    }
+    @PostMapping("/test1")
+    @ApiOperationLog(description = "测试接口")
+    public Response<Object> test1(@RequestBody @Validated User user) {
+        // 打印入参
+        log.info(JsonUtil.toJsonString(user));
+
+        // 设置三种日期字段值
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateDate(LocalDate.now());
+        user.setTime(LocalTime.now());
+
+        return Response.success(user);
+    }
 
     @PostMapping("/admin/test")
     @ApiOperationLog(description = "测试接口")

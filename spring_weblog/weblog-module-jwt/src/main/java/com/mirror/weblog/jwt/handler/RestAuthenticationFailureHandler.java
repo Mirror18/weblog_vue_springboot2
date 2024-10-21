@@ -27,11 +27,11 @@ public class RestAuthenticationFailureHandler implements AuthenticationFailureHa
         if (exception instanceof UsernameOrPasswordNullException) {
             // 用户名或密码为空
             ResultUtil.fail(response, Response.fail(exception.getMessage()));
-            return;
+
         } else if (exception instanceof BadCredentialsException) {
             // 用户名或密码错误
             ResultUtil.fail(response, Response.fail(ResponseCodeEnum.USERNAME_OR_PWD_ERROR));
-            return;
+
         }
 
         // 登录失败
