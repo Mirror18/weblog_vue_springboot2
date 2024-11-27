@@ -3,7 +3,7 @@
 import { User, Lock } from '@element-plus/icons-vue'
 
 import {login} from '@/api/admin/user'
-import { reactive} from "vue";
+import { ref, reactive } from 'vue'
 
 import { useRouter} from 'vue-router';
 
@@ -14,17 +14,48 @@ const form = reactive({
       password: ''
     })
 
+// 表单引用
+const formRef = ref(null)
+
+
+//表单验证规则
+const rules = {
+  username: [
+    {
+      required: true,
+      message: '用户名不能为空',
+      trigger: 'blur'
+    }
+  ],
+  password:[
+    {
+      required: true,
+      message: '密码不能为空',
+      trigger: 'blur',
+    },
+  ]
+}
 //登录
 const onSubmit = () => {
   console.log('登录')
-  login(form.username, form.password).then((res) => {
-    console.log(res)
-    //判断是否成功
-    if(res.data.success === true){
-      //跳转到后台首页
-      router.push('/admin/index')
+  // 先验证 form 表单字段
+  formRef.value.validate((valid) => {
+    if (!valid) {
+      console.log('表单验证不通过')
+      return false
     }
+
+    //调用登录接口
+    login(form.username, form.password).then((res) => {
+      console.log(res)
+      //判断是否成功
+      if(res.data.success === true){
+        //跳转到后台首页
+        router.push('/admin/index')
+      }
+    })
   })
+
 }
 </script>
 
