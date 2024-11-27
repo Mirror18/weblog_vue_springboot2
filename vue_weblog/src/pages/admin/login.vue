@@ -1,6 +1,31 @@
 <script setup>
 // 引入 Element Plus 中的用户、锁图标
 import { User, Lock } from '@element-plus/icons-vue'
+
+import {login} from '@/api/admin/user'
+import { reactive} from "vue";
+
+import { useRouter} from 'vue-router';
+
+const router = useRouter();
+//定义响应式的表单对象
+const form = reactive({
+      username: '',
+      password: ''
+    })
+
+//登录
+const onSubmit = () => {
+  console.log('登录')
+  login(form.username, form.password).then((res) => {
+    console.log(res)
+    //判断是否成功
+    if(res.data.success === true){
+      //跳转到后台首页
+      router.push('/admin/index')
+    }
+  })
+}
 </script>
 
 <template>
@@ -33,18 +58,18 @@ import { User, Lock } from '@element-plus/icons-vue'
           <span class="h-[1px] w-16 bg-gray-200"></span>
         </div>
         <!-- 引入 Element Plus 表单组件，移动端设置宽度为 5/6，PC 端设置为 2/5 -->
-        <el-form class="w-5/6 md:w-2/5">
-          <el-form-item>
+        <el-form class="w-5/6 md:w-2/5" ref="formRef" :rules="rules" :model="form">
+          <el-form-item prop="username">
             <!-- 输入框组件 -->
-            <el-input size="large" placeholder="请输入用户名" :prefix-icon="User" clearable/>
+            <el-input size="large" v-model="form.username" placeholder="请输入用户名" :prefix-icon="User" clearable/>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <!-- 密码框组件 -->
-            <el-input size="large" type="password" placeholder="请输入用户名" :prefix-icon="Lock" clearable/>
+            <el-input size="large" v-model="form.password" placeholder="请输入用户名" :prefix-icon="Lock" clearable/>
           </el-form-item>
           <el-form-item>
             <!-- 登录按钮，宽度设置为 100% -->
-            <el-button class="w-full" size="large" type="primary">登录</el-button>
+            <el-button class="w-full mt-2" size="large" type="primary" @click="onSubmit">登录</el-button>
           </el-form-item>
         </el-form>
 

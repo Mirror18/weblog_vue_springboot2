@@ -18,6 +18,7 @@ import java.io.IOException;
 
 /**
  * @author mirror
+ * 用于处理身份验证成功后的逻辑
  */
 @Component
 @Slf4j
