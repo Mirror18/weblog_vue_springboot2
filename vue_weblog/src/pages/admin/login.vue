@@ -3,9 +3,11 @@
 import { User, Lock } from '@element-plus/icons-vue'
 
 import {login} from '@/api/admin/user'
-import { ref, reactive } from 'vue'
+import { ref, reactive,onMounted,onBeforeMount } from 'vue'
 
 import { useRouter} from 'vue-router';
+
+import {showMessage} from "@/composables/util.js";
 
 const router = useRouter();
 //定义响应式的表单对象
@@ -35,6 +37,8 @@ const rules = {
     },
   ]
 }
+//登录按钮加载
+const loading = ref(false)
 //登录
 const onSubmit = () => {
   console.log('登录')
@@ -45,18 +49,56 @@ const onSubmit = () => {
       return false
     }
 
+    //开始加载
+    loading.value=true
     //调用登录接口
     login(form.username, form.password).then((res) => {
       console.log(res)
       //判断是否成功
-      if(res.data.success === true){
+      if (res.data.success === true) {
+        //提示登陆成功
+        // ElMessage({
+        //   message: '登录成功',
+        //   type: 'success'
+        // })
+        showMessage('登陆成功')
         //跳转到后台首页
         router.push('/admin/index')
+      } else {
+        //获取幅度段返回的错误信息
+        let message = res.data.message;
+        //提示信息
+        // ElMessage({
+        //   message: message,
+        //   type: 'error',
+        // })
+        showMessage(message,'error');
       }
+    }).finally(()=>{
+      //结束加载
+      loading.value=false
     })
   })
-
 }
+
+//按回车键后，执行登陆事件
+function onKeyUp(e){
+  console.log(e)
+  if(e.key ==='Enter'){
+    onSubmit()
+  }
+}
+
+//添加键盘监听
+onMounted(()=>{
+  console.log('添加键盘监听')
+  document.addEventListener('keyup',onKeyUp)
+})
+
+//移除键盘监听
+onBeforeMount(()=>{
+  document.removeEventListener('keyup',onKeyUp)
+})
 </script>
 
 <template>
@@ -100,7 +142,7 @@ const onSubmit = () => {
           </el-form-item>
           <el-form-item>
             <!-- 登录按钮，宽度设置为 100% -->
-            <el-button class="w-full mt-2" size="large" type="primary" @click="onSubmit">登录</el-button>
+            <el-button class="w-full mt-2" :loading="loading" size="large" type="primary" @click="onSubmit">登录</el-button>
           </el-form-item>
         </el-form>
 
