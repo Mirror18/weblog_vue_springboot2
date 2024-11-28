@@ -9,6 +9,8 @@ import { useRouter} from 'vue-router';
 
 import {showMessage} from "@/composables/util.js";
 
+import {setToken} from "@/composables/auth.js";
+
 const router = useRouter();
 //定义响应式的表单对象
 const form = reactive({
@@ -62,6 +64,11 @@ const onSubmit = () => {
         //   type: 'success'
         // })
         showMessage('登陆成功')
+
+        //村粗 token 到cookie 中
+        let token = res.data.data.token;
+        console.log(token);
+        setToken(token);
         //跳转到后台首页
         router.push('/admin/index')
       } else {
