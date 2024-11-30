@@ -44,6 +44,7 @@ const loading = ref(false)
 //登录
 const onSubmit = () => {
   console.log('登录')
+
   // 先验证 form 表单字段
   formRef.value.validate((valid) => {
     if (!valid) {
@@ -57,7 +58,7 @@ const onSubmit = () => {
     login(form.username, form.password).then((res) => {
       console.log(res)
       //判断是否成功
-      if (res.data.success === true) {
+      if (res.success == true) {
         //提示登陆成功
         // ElMessage({
         //   message: '登录成功',
@@ -66,14 +67,14 @@ const onSubmit = () => {
         showMessage('登陆成功')
 
         //村粗 token 到cookie 中
-        let token = res.data.data.token;
-        console.log(token);
+        let token = res.data.token;
+        // console.log(token);
         setToken(token);
         //跳转到后台首页
         router.push('/admin/index')
       } else {
         //获取幅度段返回的错误信息
-        let message = res.data.message;
+        let message = res.message;
         //提示信息
         // ElMessage({
         //   message: message,
@@ -86,6 +87,7 @@ const onSubmit = () => {
       loading.value=false
     })
   })
+
 }
 
 //按回车键后，执行登陆事件
