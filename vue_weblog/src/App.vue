@@ -10,4 +10,7 @@
 
 <!--css 代码， scoped 表示节点内 css 样式只针对此组件有效，不影响其他组件-->
 <style scoped>
+#nprogress .bar{
+  background: #409eff !important;
+}
 </style>
