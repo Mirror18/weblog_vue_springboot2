@@ -21,7 +21,12 @@ router.beforeEach((to, from, next) => {
     if(!token && to.path.startsWith('/admin')) {
         showMessage('请先登录','warning')
         next({path:'/login'})
-    }else{
+    }else if(token && to.path=='/login'){
+        //若用户已经登陆，且重复访问登陆页面
+        showMessage('请勿重复登陆','warning')
+        //跳转到后台页面
+        next({path:'/admin/index'})
+    } else{
         next();
     }
 })
