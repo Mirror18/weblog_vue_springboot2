@@ -4,13 +4,16 @@ import AdminMenu from "@/layouts/admin/components/AdminMenu.vue";
 import AdminHeader from "@/layouts/admin/components/AdminHeader.vue";
 import AdminTagList from "@/layouts/admin/components/AdminTagList.vue";
 import AdminFooter from "@/layouts/admin/components/AdminFooter.vue";
+import { useMenuStore } from '@/stores/menu'
+
+const menuStore = useMenuStore()
 </script>
 
 <template>
 <!--  外部容器-->
   <el-container>
-<!--    左边侧边栏-->
-    <el-aside>
+    <!-- 左边侧边栏 -->
+    <el-aside :width='menuStore.menuWidth' class="transition-all">
       <AdminMenu></AdminMenu>
     </el-aside>
 <!--    右边主内容区域-->
