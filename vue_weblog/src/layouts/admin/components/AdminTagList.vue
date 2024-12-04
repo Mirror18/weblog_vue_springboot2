@@ -1,20 +1,33 @@
 <script setup>
 import { ref } from 'vue'
-import {ArrowDown} from "@element-plus/icons-vue";
+import { useRoute } from 'vue-router'
 
-let tabIndex = 2
-const editableTabsValue = ref('2')
-const editableTabs = ref([
+const route = useRoute()
+
+// 当前被选中的 tab
+const activeTab = ref(route.path)
+// 导航栏 tab 数组
+const tabList = ref([
   {
-    title: 'Tab 1',
-    name: '1',
-    content: 'Tab 1 content',
+    title: '仪表盘',
+    path: "/admin/index"
   },
   {
-    title: 'Tab 2',
-    name: '2',
-    content: 'Tab 2 content',
+    title: '文章管理',
+    path: "/admin/article/list"
   },
+  {
+    title: '分类管理',
+    path: "/admin/category/list"
+  },
+  {
+    title: '标签管理',
+    path: "/admin/tag/list"
+  },
+  {
+    title: '博客设置',
+    path: "/admin/blog/setting"
+  }
 ])
 
 const addTab = (targetName) => {
@@ -52,9 +65,8 @@ const menuStore = useMenuStore()
 <template>
   <!-- 左边：标签导航栏 -->
   <div class="fixed top-[64px] h-[44px] px-2 right-0 z-50 flex items-center bg-white transition-all duration-300 shadow" :style="{left: menuStore.menuWidth}">
-    <el-tabs v-model="editableTabsValue" type="card" class="demo-tabs" closable @tab-remove="removeTab" style="min-width: 10px">
-      <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
-        {{ item.content }}
+    <el-tabs v-model="activeTab" type="card" class="demo-tabs" @tab-remove="removeTab" style="min-width: 10px;">
+      <el-tab-pane v-for="item in tabList" :key="item.path" :label="item.title" :name="item.path" :closable="item.path != '/admin/index'">
       </el-tab-pane>
     </el-tabs>
 
