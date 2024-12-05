@@ -31,9 +31,40 @@ const tabList = ref([
 ])
 
 
-const removeTab = (targetName) => {
+// 删除 Tab 标签
+const removeTab = (path) => {
+  let tabs = tabList.value
+  // 当前被选中的 tab 标签
+  let actTab = activeTab.value
 
+  // 如果要删除的是当前被选中的标签页，则需要判断其被删除后，需要激活哪个 tab 标签页
+  if (actTab == path) {
+    // 循环 tabList
+    tabs.forEach((tab, index) => {
+      // 获取被选中的 tab 元素
+      if (tab.path == path) {
+        // 拿到被选中的标签页下标，如果它后面还有标签页，则取下一个标签页，否则取上一个
+        let nextTab = tabs[index + 1] || tabs[index - 1]
+        if (nextTab) {
+          actTab = nextTab.path
+        }
+      }
+    })
+  }
+
+  // 需要被激活的标签页
+  activeTab.value = actTab
+
+  // 过滤掉被删除的标签页, 重新设置回去
+  tabList.value = tabList.value.filter((tab) => tab.path != path)
+
+  // 存储到 cookie 中
+  setTabList(tabList.value)
+
+  // 切换标签页
+  tabChange(activeTab.value)
 }
+
 import { onBeforeRouteUpdate } from 'vue-router'
 
 // 添加 Tab 标签页
