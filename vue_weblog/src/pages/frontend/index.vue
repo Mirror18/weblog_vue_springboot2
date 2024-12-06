@@ -38,7 +38,7 @@
         </div>
 
         <!-- 登录按钮，点击跳转到登录页面 -->
-        <div class="text-gray-900 ml-1 mr-1 hover:text-blue-700" @click="$router.push('/login')">登录</div>
+        <div class="text-gray-900 ml-1 mr-1 hover:text-blue-700" @click="router.push('/login')">登录</div>
 
         <!-- 折叠菜单按钮，在小屏幕设备显示 -->
         <button data-collapse-toggle="navbar-search" type="button"
@@ -93,6 +93,8 @@
 <script setup>
 import { onMounted } from 'vue'
 import { initCollapses } from 'flowbite'
+import router from "@/router/index.js";
+
 
 /* 使用 onMounted 钩子，当组件挂载时初始化 Flowbite 折叠组件 */
 onMounted(() => {

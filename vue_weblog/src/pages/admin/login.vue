@@ -9,7 +9,7 @@ import { useRouter} from 'vue-router';
 
 import {showMessage} from "@/composables/util.js";
 
-import {setToken} from "@/composables/auth.js";
+import {setToken} from "@/composables/cookie.js";
 
 const router = useRouter();
 //定义响应式的表单对象
@@ -58,7 +58,7 @@ const onSubmit = () => {
     login(form.username, form.password).then((res) => {
       console.log(res)
       //判断是否成功
-      if (res.success == true) {
+      if (res.success === true) {
         //提示登陆成功
         // ElMessage({
         //   message: '登录成功',

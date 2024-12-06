@@ -1,5 +1,5 @@
 import router from "@/router/index.js";
-import {getToken} from "@/composables/auth.js";
+import {getToken} from "@/composables/cookie.js";
 import {hidePageLoading, showMessage, showPageLoading} from "@/composables/util.js";
 
 //全局路由前置守卫
@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     if(!token && to.path.startsWith('/admin')) {
         showMessage('请先登录','warning')
         next({path:'/login'})
-    }else if(token && to.path=='/login'){
+    }else if(token && to.path==='/login'){
         //若用户已经登陆，且重复访问登陆页面
         showMessage('请勿重复登陆','warning')
         //跳转到后台页面
