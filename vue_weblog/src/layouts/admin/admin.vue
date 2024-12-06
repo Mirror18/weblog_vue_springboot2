@@ -26,8 +26,14 @@ const menuStore = useMenuStore()
       <el-main>
 <!--        标签导航栏-->
         <AdminTagList></AdminTagList>
-<!--        主内容，根据路由动态展示不同页面-->
-        <router-view></router-view>
+        <!-- 主内容（根据路由动态展示不同页面） -->
+        <router-view v-slot="{ Component }">
+          <!-- max 指定最多缓存 10 个组件 -->
+          <KeepAlive :max="10">
+            <component :is="Component"></component>
+          </KeepAlive>
+        </router-view>
+
       </el-main>
 <!--      底栏容器-->
       <el-footer>
