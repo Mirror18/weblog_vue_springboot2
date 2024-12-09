@@ -10,6 +10,7 @@ import { useRouter} from 'vue-router';
 import {showMessage} from "@/composables/util.js";
 
 import {setToken} from "@/composables/cookie.js";
+import {useUserStore} from "@/stores/user.js";
 
 const router = useRouter();
 //定义响应式的表单对象
@@ -41,6 +42,8 @@ const rules = {
 }
 //登录按钮加载
 const loading = ref(false)
+//获取用户信息
+const userStore = useUserStore()
 //登录
 const onSubmit = () => {
   console.log('登录')
@@ -70,6 +73,10 @@ const onSubmit = () => {
         let token = res.data.token;
         // console.log(token);
         setToken(token);
+
+        // 获取用户信息，并存储到全局状态中
+        userStore.setUserInfo()
+
         //跳转到后台首页
         router.push('/admin/index')
       } else {

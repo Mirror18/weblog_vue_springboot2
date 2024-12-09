@@ -4,3 +4,8 @@ import axios from "@/axios"
 export function login(username, password){
     return axios.post("/login",{username, password})
 }
+
+// 获取登录用户信息
+export function getUserInfo() {
+    return axios.post("/admin/user/info")
+}

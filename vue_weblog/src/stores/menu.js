@@ -7,7 +7,7 @@ export const useMenuStore = defineStore('menu', () => {
 
     // 展开或伸缩左边栏菜单
     function handleMenuWidth() {
-        menuWidth.value = menuWidth.value == '250px' ? '64px' : '250px'
+        menuWidth.value = menuWidth.value === '250px' ? '64px' : '250px'
     }
 
     return { menuWidth, handleMenuWidth }

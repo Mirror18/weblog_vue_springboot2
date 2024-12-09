@@ -21,6 +21,10 @@ const { isFullscreen, toggle } = useFullscreen()
 // 刷新页面
 const handleRefresh = () => location.reload()
 
+import { useUserStore } from '@/stores/user'
+
+// 引入了用户 Store
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -64,7 +68,7 @@ const handleRefresh = () => location.reload()
                 <span class="el-dropdown-link flex items-center justify-center text-gray-700 text-xs">
                     <!-- 头像 Avatar -->
                     <el-avatar class="mr-2" :size="25" src="https://img.quanxiaoha.com/quanxiaoha/f97361c0429d4bb1bc276ab835843065.jpg" />
-                    Admin
+                    {{ userStore.userInfo.username }}
                     <el-icon class="el-icon--right">
                         <arrow-down />
                     </el-icon>
