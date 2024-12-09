@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {ref} from 'vue'
 import {getUserInfo} from '@/api/admin/user'
+import {removeToken} from "@/composables/cookie.js";
 
 export const useUserStore = defineStore('user', () => {
         // 用户信息
@@ -16,7 +17,15 @@ export const useUserStore = defineStore('user', () => {
             })
         }
 
-        return {userInfo, setUserInfo}
+        // 退出登录
+        function logout() {
+            // 删除 cookie 中的 token 令牌
+            removeToken()
+            // 删除登录用户信息
+            userInfo.value = {}
+        }
+
+        return {userInfo, setUserInfo, logout}
     },
     {
         // 开启持久化
