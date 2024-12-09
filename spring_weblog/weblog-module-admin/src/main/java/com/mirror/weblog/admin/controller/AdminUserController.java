@@ -1,6 +1,6 @@
 package com.mirror.weblog.admin.controller;
 
-import com.mirror.weblog.admin.model.vo.UpdateAdminUserPasswordReqVO;
+import com.mirror.weblog.admin.model.vo.user.UpdateAdminUserPasswordReqVO;
 import com.mirror.weblog.admin.service.AdminUserService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
 import com.mirror.weblog.common.utils.Response;
@@ -28,4 +28,12 @@ public class AdminUserController {
     public Response updatePassword(@RequestBody @Validated UpdateAdminUserPasswordReqVO updateAdminUserPasswordReqVO) {
         return userService.updatePassword(updateAdminUserPasswordReqVO);
     }
+
+    @PostMapping("/user/info")
+//    @ApiOperation(value = "获取用户信息")
+    @ApiOperationLog(description = "获取用户信息")
+    public Response findUserInfo() {
+        return userService.findUserInfo();
+    }
+
 }

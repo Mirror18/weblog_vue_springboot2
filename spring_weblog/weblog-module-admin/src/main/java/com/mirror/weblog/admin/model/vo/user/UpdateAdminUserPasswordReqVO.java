@@ -1,4 +1,4 @@
-package com.mirror.weblog.admin.model.vo;
+package com.mirror.weblog.admin.model.vo.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

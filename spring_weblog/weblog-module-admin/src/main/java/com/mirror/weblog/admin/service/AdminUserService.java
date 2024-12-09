@@ -1,6 +1,6 @@
 package com.mirror.weblog.admin.service;
 
-import com.mirror.weblog.admin.model.vo.UpdateAdminUserPasswordReqVO;
+import com.mirror.weblog.admin.model.vo.user.UpdateAdminUserPasswordReqVO;
 import com.mirror.weblog.common.utils.Response;
 
 /**
@@ -8,4 +8,10 @@ import com.mirror.weblog.common.utils.Response;
  */
 public interface AdminUserService {
     Response updatePassword(UpdateAdminUserPasswordReqVO updateAdminUserPasswordReqVO);
+
+    /**
+     * 获取当前登录用户信息
+     *
+     */
+    Response findUserInfo();
 }
