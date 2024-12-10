@@ -9,3 +9,8 @@ export function getCategoryPageList(data) {
 export function addCategory(data) {
     return axios.post("/admin/category/add", data)
 }
+
+// 删除分类
+export function deleteCategory(id) {
+    return axios.post("/admin/category/delete", {id})
+}

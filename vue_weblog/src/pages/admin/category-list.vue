@@ -9,7 +9,7 @@ const searchCategoryName = ref('')
 // 日期
 const pickDate = ref('')
 
-import { getCategoryPageList } from '@/api/admin/category'
+import {deleteCategory, getCategoryPageList} from '@/api/admin/category'
 
 // 表格数据
 const tableData = ref([])
@@ -149,6 +149,28 @@ const onSubmit = () => {
   })
 }
 
+import {  showModel } from '@/composables/util'
+
+const deleteCategorySubmit = (row) => {
+  console.log(row.id)
+  showModel('是否确定要删除该分类？').then(() => {
+    deleteCategory(row.id).then((res) => {
+      if (res.success === true) {
+        showMessage('删除成功')
+        // 重新请求分页接口，渲染数据
+        getTableData()
+      } else {
+        // 获取服务端返回的错误消息
+        let message = res.message
+        // 提示错误消息
+        showMessage(message, 'error')
+      }
+    })
+  }).catch(() => {
+    console.log('取消了')
+  })
+}
+
 </script>
 
 
@@ -210,7 +232,7 @@ const onSubmit = () => {
         <el-table-column prop="createTime" label="创建时间" width="180" />
         <el-table-column label="操作" >
           <template #default="scope">
-            <el-button type="danger" size="small">
+            <el-button type="danger" size="small" @click="deleteCategorySubmit(scope.row)">
               <el-icon class="mr-1">
                 <Delete />
               </el-icon>
