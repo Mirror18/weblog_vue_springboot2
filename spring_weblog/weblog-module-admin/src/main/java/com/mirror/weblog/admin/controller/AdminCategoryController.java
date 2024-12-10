@@ -3,6 +3,8 @@ package com.mirror.weblog.admin.controller;
 import com.mirror.weblog.admin.model.vo.category.AddCategoryReqVO;
 import com.mirror.weblog.admin.service.AdminCategoryService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
+import com.mirror.weblog.common.modeL.FindCategoryPageListReqVO;
+import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -26,5 +28,10 @@ public class AdminCategoryController {
         return categoryService.addCategory(addCategoryReqVO);
     }
 
-
+    @PostMapping("/category/list")
+//    @ApiOperation(value = "分类分页数据获取")
+    @ApiOperationLog(description = "分类分页数据获取")
+    public PageResponse findCategoryList(@RequestBody @Validated FindCategoryPageListReqVO findCategoryPageListReqVO) {
+        return categoryService.findCategoryList(findCategoryPageListReqVO);
+    }
 }
