@@ -93,6 +93,62 @@ const reset = () => {
   startDate.value = null
   endDate.value = null
 }
+
+
+// 对话框是否显示
+const dialogVisible = ref(false)
+
+
+// 表单引用
+const formRef = ref(null)
+
+// 添加文章分类表单对象
+const form = reactive({
+  name: ''
+})
+// 规则校验
+const rules = {
+  name: [
+    {
+      required: true,
+      message: '分类名称不能为空',
+      trigger: 'blur',
+    },
+    { min: 1, max: 20, message: '分类名称字数要求大于 1 个字符，小于 20 个字符', trigger: 'blur' },
+  ]
+}
+import { addCategory } from '@/api/admin/category'
+import { showMessage } from '@/composables/util'
+
+const onSubmit = () => {
+  // 先验证 form 表单字段
+  formRef.value.validate((valid) => {
+    if (!valid) {
+      console.log('表单验证不通过')
+      return false
+    }
+
+    // 请求添加分类接口
+    addCategory(form).then((res) => {
+      if (res.success == true) {
+        showMessage('添加成功')
+        // 将表单中分类名称置空
+        form.name = ''
+        // 隐藏对话框
+        dialogVisible.value = false
+        // 重新请求分页接口，渲染数据
+        getTableData()
+      } else {
+        // 获取服务端返回的错误消息
+        let message = res.message
+        // 提示错误消息
+        showMessage(message, 'error')
+      }
+    })
+
+  })
+}
+
 </script>
 
 
@@ -122,12 +178,31 @@ const reset = () => {
     <el-card shadow="never">
       <!-- 新增按钮 -->
       <div class="mb-5">
-        <el-button type="primary">
+        <el-button type="primary" @click="dialogVisible = true">
           <el-icon class="mr-1">
             <Plus />
           </el-icon>
           新增</el-button>
       </div>
+
+      <!-- 添加分类 -->
+      <el-dialog v-model="dialogVisible" title="添加文章分类" width="40%" :draggable ="true" :close-on-click-modal="false" :close-on-press-escape="false">
+        <el-form ref="formRef" :rules="rules" :model="form">
+          <el-form-item label="分类名称" prop="name" label-width="80px">
+            <!-- 输入框组件 -->
+            <el-input size="large" v-model="form.name" placeholder="请输入分类名称" maxlength="20" show-word-limit clearable/>
+          </el-form-item>
+        </el-form>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="dialogVisible = false">取消</el-button>
+                <el-button type="primary" @click="onSubmit">
+                    提交
+                </el-button>
+            </span>
+        </template>
+      </el-dialog>
+
 
       <!-- 分页列表 -->
       <el-table :data="tableData" border stripe style="width: 100%">
