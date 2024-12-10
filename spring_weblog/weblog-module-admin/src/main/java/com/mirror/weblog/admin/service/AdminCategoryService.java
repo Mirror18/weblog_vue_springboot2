@@ -2,7 +2,7 @@ package com.mirror.weblog.admin.service;
 
 import com.mirror.weblog.admin.model.vo.category.AddCategoryReqVO;
 import com.mirror.weblog.admin.model.vo.category.DeleteCategoryReqVO;
-import com.mirror.weblog.common.modeL.FindCategoryPageListReqVO;
+import com.mirror.weblog.common.model.FindCategoryPageListReqVO;
 import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 
@@ -27,4 +27,11 @@ public interface AdminCategoryService {
      * @return
      */
     Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO);
+
+    /**
+     * 获取文章分类的 Select 列表数据
+     * @return
+     */
+    Response findCategorySelectList();
+
 }

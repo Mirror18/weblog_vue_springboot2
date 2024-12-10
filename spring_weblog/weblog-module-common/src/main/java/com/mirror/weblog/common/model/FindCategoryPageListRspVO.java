@@ -1,4 +1,4 @@
-package com.mirror.weblog.common.modeL;
+package com.mirror.weblog.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

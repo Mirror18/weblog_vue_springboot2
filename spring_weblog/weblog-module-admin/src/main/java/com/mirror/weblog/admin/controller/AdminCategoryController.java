@@ -4,7 +4,7 @@ import com.mirror.weblog.admin.model.vo.category.AddCategoryReqVO;
 import com.mirror.weblog.admin.model.vo.category.DeleteCategoryReqVO;
 import com.mirror.weblog.admin.service.AdminCategoryService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
-import com.mirror.weblog.common.modeL.FindCategoryPageListReqVO;
+import com.mirror.weblog.common.model.FindCategoryPageListReqVO;
 import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,13 @@ public class AdminCategoryController {
     @ApiOperationLog(description = "删除分类")
     public Response deleteCategory(@RequestBody @Validated DeleteCategoryReqVO deleteCategoryReqVO) {
         return categoryService.deleteCategory(deleteCategoryReqVO);
+    }
+
+    @PostMapping("/category/select/list")
+//    @ApiOperation(value = "分类 Select 下拉列表数据获取")
+    @ApiOperationLog(description = "分类 Select 下拉列表数据获取")
+    public Response findCategorySelectList() {
+        return categoryService.findCategorySelectList();
     }
 
 }
