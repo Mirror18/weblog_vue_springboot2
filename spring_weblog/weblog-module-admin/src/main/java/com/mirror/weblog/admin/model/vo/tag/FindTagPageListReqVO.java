@@ -1,8 +1,10 @@
-package com.mirror.weblog.common.model;
+package com.mirror.weblog.admin.model.vo.tag;
 
+import com.mirror.weblog.common.model.BasePageQuery;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author mirror
@@ -13,10 +15,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 //@ApiModel(value = "查询分类分页数据入参 VO")
-public class FindCategoryPageListReqVO extends BasePageQuery {
+public class FindTagPageListReqVO extends BasePageQuery {
 
     /**
-     * 分类名称
+     * 标签名称
      */
     private String name;
 

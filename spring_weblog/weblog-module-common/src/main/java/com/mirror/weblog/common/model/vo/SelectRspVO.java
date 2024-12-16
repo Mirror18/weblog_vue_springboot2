@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SelectRspVO {
+public class  SelectRspVO {
     /**
      * Select 下拉列表的展示文字
      */

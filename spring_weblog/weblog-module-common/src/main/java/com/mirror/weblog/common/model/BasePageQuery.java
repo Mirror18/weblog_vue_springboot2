@@ -2,6 +2,9 @@ package com.mirror.weblog.common.model;
 
 import lombok.Data;
 
+/**
+ * @author mirror
+ */
 @Data
 public class BasePageQuery {
     /**

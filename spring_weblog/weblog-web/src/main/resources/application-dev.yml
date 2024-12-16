@@ -30,3 +30,13 @@ jwt:
   tokenHeaderKey: Authorization
     # token 请求头中的 value 值前缀
   tokenPrefix: Bearer
+
+#=================================================================
+# minio
+#=================================================================
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: mirror
+  secretKey: makai2001
+  bucketName: weblog
+

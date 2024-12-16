@@ -4,7 +4,7 @@ import com.mirror.weblog.admin.model.vo.category.AddCategoryReqVO;
 import com.mirror.weblog.admin.model.vo.category.DeleteCategoryReqVO;
 import com.mirror.weblog.admin.service.AdminCategoryService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
-import com.mirror.weblog.common.model.FindCategoryPageListReqVO;
+import com.mirror.weblog.admin.model.vo.category.FindCategoryPageListReqVO;
 import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author mirror
+ */
 @RestController
 @RequestMapping("/admin")
 //@Api(tags = "Admin 分类模块")
@@ -32,8 +35,8 @@ public class AdminCategoryController {
     @PostMapping("/category/list")
 //    @ApiOperation(value = "分类分页数据获取")
     @ApiOperationLog(description = "分类分页数据获取")
-    public PageResponse findCategoryList(@RequestBody @Validated FindCategoryPageListReqVO findCategoryPageListReqVO) {
-        return categoryService.findCategoryList(findCategoryPageListReqVO);
+    public PageResponse findCategoryPageList(@RequestBody @Validated FindCategoryPageListReqVO findCategoryPageListReqVO) {
+        return categoryService.findCategoryPageList(findCategoryPageListReqVO);
     }
 
     @PostMapping("/category/delete")
