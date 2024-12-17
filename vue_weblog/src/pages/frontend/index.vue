@@ -30,6 +30,7 @@
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
+            <span class="sr-only">Search icon</span>
           </div>
           <!-- 搜索输入框 -->
           <input type="text" id="search-navbar"
@@ -38,7 +39,7 @@
         </div>
 
         <!-- 登录按钮，点击跳转到登录页面 -->
-        <div class="text-gray-900 ml-1 mr-1 hover:text-blue-700" @click="router.push('/login')">登录</div>
+        <div class="text-gray-900 ml-1 mr-1 hover:text-blue-700" @click="$router.push('/login')">登录</div>
 
         <!-- 折叠菜单按钮，在小屏幕设备显示 -->
         <button data-collapse-toggle="navbar-search" type="button"
@@ -46,14 +47,16 @@
                 aria-controls="navbar-search" aria-expanded="false">
           <span class="sr-only">Open main menu</span> <!-- 辅助文本，用于屏幕阅读器 -->
           <!-- 折叠菜单图标 -->
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"/>
           </svg>
         </button>
       </div>
 
       <!-- 菜单项，PC端显示 -->
-      <div class="items-center justify-between hidden  md:flex w-full md:w-auto md:order-1" id="navbar-search">
+      <div class="items-center justify-between hidden   w-full md:flex md:w-auto md:order-1" id="navbar-search">
         <!-- 搜索框（移动设备） -->
         <div class="relative mt-3 md:hidden">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -67,14 +70,16 @@
         </div>
 
         <!-- 菜单项列表 -->
-        <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <!-- 首页菜单项 -->
           <li>
             <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">首页</a>
           </li>
           <!-- 分类菜单项 -->
           <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">分类</a>
+            <a href="#"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">分类</a>
           </li>
           <!-- 标签菜单项 -->
           <li>

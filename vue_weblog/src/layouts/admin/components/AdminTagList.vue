@@ -34,7 +34,7 @@ const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = 
   <div class="h-[44px]"></div>
 </template>
 
-<style scoped>
+<style >
 .el-tabs__item {
   font-size: 12px;
   border: 1px solid #d8dce5!important;

@@ -140,9 +140,11 @@ watch(() => userStore.userInfo.username, (newValue, oldValue) => {
 </script>
 
 <template>
+  <!-- 固钉组件，通过设置 offset 属性来改变吸顶距离，默认值为 0。 -->
+  <el-affix :offset="0">
   <!-- 通过 flex 指定水平布局 -->
   <!-- 设置背景色为白色、高度为 64px，padding-right 为 4， border-bottom 为 slate 200 -->
-  <div class="bg-white h-[64px] flex pr-4 border-b border-slate-100">
+  <div class=" bg-white h-[64px] flex pr-4 border-b border-slate-100">
     <!-- 左边栏收缩、展开 -->
     <div class="w-[42px] h-[64px] cursor-pointer flex items-center justify-center text-gray-700 hover:bg-gray-200" @click="handleMenuWidth">
       <el-icon>
@@ -222,6 +224,7 @@ watch(() => userStore.userInfo.username, (newValue, oldValue) => {
     </div>
 
   </div>
+  </el-affix>
 </template>
 
 

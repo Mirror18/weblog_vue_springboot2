@@ -21,7 +21,7 @@ export function useTabList() {
     // 添加 Tab 标签页
     function addTab(tab) {
         // 标签是否不存在
-        let isTabNotExisted = tabList.value.findIndex(item => item.path == tab.path) == -1
+        let isTabNotExisted = tabList.value.findIndex(item => item.path == tab.path) === -1
         // 如果不存在
         if (isTabNotExisted) {
             // 添加标签
