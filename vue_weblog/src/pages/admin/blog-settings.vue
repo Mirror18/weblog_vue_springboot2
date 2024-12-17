@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { Check, Close } from '@element-plus/icons-vue'
+import {Check, Close, Plus} from '@element-plus/icons-vue'
 // 表单对象
 const form = reactive({
   name: '',
@@ -62,13 +62,130 @@ const csdnSwitchChange = (checked) => {
   }
 }
 
+import { getBlogSettingsDetail } from '@/api/admin/blogsettings'
 
+// 初始化博客设置数据，并渲染到页面上
+function initBlogSettings() {
+  // 请求后台接口
+  getBlogSettingsDetail().then((e) => {
+    if (e.success == true) {
+      // 设置表单数据
+      form.name = e.data.name
+      form.author = e.data.author
+      form.logo = e.data.logo
+      form.avatar = e.data.avatar
+      form.introduction = e.data.introduction
+
+      // 第三方平台信息设置，先判断后端返回平台链接是否为空，若不为空，则将 switch 组件置为选中状态，并设置表单对应数据
+      if (e.data.githubHomepage) {
+        isGithubChecked.value = true
+        form.githubHomepage = e.data.githubHomepage
+      }
+
+      if (e.data.giteeHomepage) {
+        isGiteeChecked.value = true
+        form.giteeHomepage = e.data.giteeHomepage
+      }
+
+      if (e.data.zhihuHomepage) {
+        isZhihuChecked.value = true
+        form.zhihuHomepage = e.data.zhihuHomepage
+      }
+
+      if (e.data.csdnHomepage) {
+        isCSDNChecked.value = true
+        form.csdnHomepage = e.data.csdnHomepage
+      }
+    }
+  })
+}
+// 手动调用一下初始化方法
+initBlogSettings()
+
+import { uploadFile } from '@/api/admin/file'
+import { showMessage } from '@/composables/util'
+
+// 上传 logo 图片
+const handleLogoChange = (file) => {
+  // 表单对象
+  let formData = new FormData()
+  // 添加 file 字段，并将文件传入
+  formData.append('file', file.raw)
+  uploadFile(formData).then((e) => {
+    // 响参失败，提示错误消息
+    if (e.success == false) {
+      let message = e.message
+      showMessage(message, 'error')
+      return
+    }
+
+    // 成功则设置 logo 链接，并提示成功
+    form.logo = e.data.url
+    showMessage('上传成功')
+  })
+}
+
+
+// 上传作者头像
+const handleAvatarChange = (file) => {
+  // 表单对象
+  let formData = new FormData()
+  // 添加 file 字段，并将文件传入
+  formData.append('file', file.raw)
+  uploadFile(formData).then((e) => {
+    // 响参失败，提示错误消息
+    if (e.success == false) {
+      let message = e.message
+      showMessage(message, 'error')
+      return
+    }
+
+    // 成功则设置作者头像链接，并提示成功
+    form.avatar = e.data.url
+    showMessage('上传成功')
+  })
+}
+
+import { updateBlogSettings } from '@/api/admin/blogsettings'
+
+// 是否显示保存按钮的 loading 状态，默认为 false
+const btnLoading = ref(false)
+
+// 表单引用
+const formRef = ref(null)
+
+// 保存当前博客设置
+const onSubmit = () => {
+  // 先验证 form 表单字段
+  formRef.value.validate((valid) => {
+    if (!valid) {
+      console.log('表单验证不通过')
+      return false
+    }
+
+    // 显示保存按钮 loading
+    btnLoading.value = true
+    updateBlogSettings(form).then((res) => {
+      if (res.success == false) {
+        // 获取服务端返回的错误消息
+        let message = res.message
+        // 提示错误消息
+        showMessage(message, 'error')
+        return
+      }
+
+      // 重新渲染页面中的信息
+      initBlogSettings()
+      showMessage('保存成功')
+    }).finally(() => btnLoading.value = false) // 隐藏保存按钮 loading
+  })
+}
 </script>
 <template>
   <div>
     <!-- 卡片组件， shadow="never" 指定 card 卡片组件没有阴影 -->
     <el-card shadow="never">
-      <el-form :model="form" label-width="160px" :rules="rules">
+      <el-form ref="formRef" :model="form" label-width="160px" :rules="rules">
         <el-form-item label="博客名称" prop="name">
           <el-input v-model="form.name" clearable />
         </el-form-item>
@@ -77,8 +194,9 @@ const csdnSwitchChange = (checked) => {
         </el-form-item>
 
         <el-form-item label="博客 LOGO" prop="logo">
-          <el-upload class="avatar-uploader" action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-                     :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <el-upload class="avatar-uploader" action="#"
+                     :on-change="handleLogoChange" :auto-upload="false"
+                     :show-file-list="false">
             <img v-if="form.logo" :src="form.logo" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon">
               <Plus />
@@ -86,8 +204,9 @@ const csdnSwitchChange = (checked) => {
           </el-upload>
         </el-form-item>
         <el-form-item label="作者头像" prop="avatar">
-          <el-upload class="avatar-uploader" action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-                     :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <el-upload class="avatar-uploader" action="#"
+                     :on-change="handleAvatarChange" :auto-upload="false"
+                     :show-file-list="false">
             <img v-if="form.avatar" :src="form.avatar" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon">
               <Plus />
@@ -136,7 +255,7 @@ const csdnSwitchChange = (checked) => {
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">保存</el-button>
+          <el-button type="primary" :loading="btnLoading" @click="onSubmit">保存</el-button>
         </el-form-item>
 
       </el-form>
