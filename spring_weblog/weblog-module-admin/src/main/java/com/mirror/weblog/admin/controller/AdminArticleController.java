@@ -2,6 +2,7 @@ package com.mirror.weblog.admin.controller;
 
 import com.mirror.weblog.admin.model.vo.article.*;
 import com.mirror.weblog.admin.service.AdminArticleService;
+import com.mirror.weblog.admin.service.AdminTagService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
 import com.mirror.weblog.common.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,14 @@ public class AdminArticleController {
         return articleService.updateArticle(updateArticleReqVO);
     }
 
+    @Autowired
+    private AdminTagService tagService;
+
+    @PostMapping("/select/list")
+//    @ApiOperation(value = "查询标签 Select 列表数据")
+    @ApiOperationLog(description = "查询标签 Select 列表数据")
+    public Response findTagSelectList() {
+        return tagService.findTagSelectList();
+    }
 }
 

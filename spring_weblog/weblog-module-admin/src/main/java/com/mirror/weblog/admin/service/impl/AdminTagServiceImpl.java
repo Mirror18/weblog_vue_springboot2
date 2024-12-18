@@ -2,6 +2,7 @@ package com.mirror.weblog.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mirror.weblog.admin.model.vo.tag.*;
@@ -119,4 +120,23 @@ public class AdminTagServiceImpl extends ServiceImpl<TagMapper, TagDO> implement
 
     }
 
+
+    @Override
+    public Response findTagSelectList() {
+        // 查询所有标签, Wrappers.emptyWrapper() 表示查询条件为空
+        List<TagDO> tagDOS = tagMapper.selectList(Wrappers.emptyWrapper());
+
+        // DO 转 VO
+        List<SelectRspVO> vos = null;
+        if (!CollectionUtils.isEmpty(tagDOS)) {
+            vos = tagDOS.stream()
+                    .map(tagDO -> SelectRspVO.builder()
+                            .label(tagDO.getName())
+                            .value(tagDO.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return Response.success(vos);
+    }
 }
