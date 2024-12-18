@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mirror.weblog.admin.model.vo.category.AddCategoryReqVO;
 import com.mirror.weblog.admin.model.vo.category.DeleteCategoryReqVO;
 import com.mirror.weblog.admin.service.AdminCategoryService;
+import com.mirror.weblog.common.domain.dos.ArticleCategoryRelDO;
 import com.mirror.weblog.common.domain.dos.CategoryDO;
+import com.mirror.weblog.common.domain.mapper.ArticleCategoryRelMapper;
 import com.mirror.weblog.common.domain.mapper.CategoryMapper;
 import com.mirror.weblog.common.enums.ResponseCodeEnum;
 import com.mirror.weblog.common.exception.BizException;
@@ -98,16 +100,34 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         return PageResponse.success(categoryDOPage, vos);
     }
 
-    @Override
-    public Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO) {
-        // 分类 ID
-        Long categoryId = deleteCategoryReqVO.getId();
+//    @Override
+//    public Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO) {
+//        // 分类 ID
+//        Long categoryId = deleteCategoryReqVO.getId();
+//
+//        // 删除分类
+//        categoryMapper.deleteById(categoryId);
+//
+//        return Response.success();
+//    }
+@Override
+public Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO) {
+    // 分类 ID
+    Long categoryId = deleteCategoryReqVO.getId();
 
-        // 删除分类
-        categoryMapper.deleteById(categoryId);
+    // 校验该分类下是否已经有文章，若有，则提示需要先删除分类下所有文章，才能删除
+    ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelMapper.selectOneByCategoryId(categoryId);
 
-        return Response.success();
+    if (Objects.nonNull(articleCategoryRelDO)) {
+        log.warn("==> 此分类下包含文章，无法删除，categoryId: {}", categoryId);
+        throw new BizException(ResponseCodeEnum.CATEGORY_CAN_NOT_DELETE);
     }
+
+    // 删除分类
+    categoryMapper.deleteById(categoryId);
+
+    return Response.success();
+}
 
     @Override
     public Response findCategorySelectList() {
@@ -129,5 +149,9 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
         return Response.success(selectRspVOS);
     }
+
+    @Autowired
+    private ArticleCategoryRelMapper articleCategoryRelMapper;
+
 
 }
