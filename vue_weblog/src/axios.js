@@ -1,5 +1,6 @@
 import axios from "axios";
 import {getToken} from "@/composables/cookie.js";
+import {showMessage} from "@/composables/util.js";
 
 //创建 Axios 实例
 const instance = axios.create({
@@ -33,6 +34,21 @@ instance.interceptors.response.use(function (response) {
 }, function(error){
     //超出 2xx 范围的状态码都会出发该函数
     //对响应 错误做些什么
+    let status = error.response.status
+
+    // 状态码 401
+    if (status == 401) {
+        // 删除 cookie 中的令牌
+        removeToken()
+        // 刷新页面
+        location.reload()
+    }
+
+    // 若后台有错误提示就用提示文字，默认提示为 '请求失败'
+    let errorMsg = error.response.data.message || '请求失败'
+    // 弹错误提示
+    showMessage(errorMsg, 'error')
+
     return Promise.reject(error);
     }
 
