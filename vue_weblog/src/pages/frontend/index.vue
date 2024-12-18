@@ -1,109 +1,144 @@
 <template>
-  <!-- 导航栏组件 -->
-  <nav class="bg-white border-gray-200 border-b dark:bg-gray-900">
-    <!-- 最外层的容器，定义最大宽度、内容的对齐方式 -->
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <!-- 左上角图标及博客名称，点击后返回首页 -->
-      <a href="/" class="flex items-center">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo"/>
-        <!-- 博客标题 -->
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">mirror的博客</span>
-      </a>
+  <Header></Header>
 
-      <!-- 右侧区域，包含搜索按钮、登录按钮和折叠菜单按钮 -->
-      <div class="flex items-center md:order-2">
-        <!-- 搜索按钮，在小屏幕设备显示 -->
-        <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false"
-                class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1">
-          <!-- 搜索图标 -->
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-          </svg>
-          <span class="sr-only">Search</span> <!-- 辅助文本，用于屏幕阅读器 -->
-        </button>
+  <!-- 主内容区域 -->
+  <main class="container max-w-screen-xl mx-auto p-4">
+    <!-- grid 表格布局，分为 4 列 -->
+    <div class="grid grid-cols-4 gap-4">
+      <!-- 左边栏，占用 3 列 -->
+      <div class="col-span-4 md:col-span-3">
+        <!-- 文章列表，grid 表格布局，分为 2 列 -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2 md:col-span-1">
+            <div
+                class="bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+              <!-- 文章封面 -->
+              <a href="#">
+                <img class="rounded-t-lg h-48 w-full"
+                     src="https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg"
+                     alt="" />
+              </a>
 
-        <!-- 搜索输入框，在中等及以上屏幕设备显示 -->
-        <div class="relative hidden mr-2 md:block">
-          <!-- 搜索图标，位于输入框内左侧 -->
-          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-            <span class="sr-only">Search icon</span>
+              <div class="p-5">
+                <!-- 标签 -->
+                <div class="mb-3">
+                  <span class="cursor-pointer bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:bg-green-900 dark:text-green-300">从0到1</span>
+                  <span class="cursor-pointer bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:bg-green-900 dark:text-green-300">知识星球</span>
+                  <span class="cursor-pointer bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:bg-green-900 dark:text-green-300">项目实战</span>
+                </div>
+
+                <!-- 文章标题 -->
+                <a href="#">
+                  <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    从零手撸前后端分离博客（已更新11w+字）</h2>
+                </a>
+                <!-- 文章摘要 -->
+                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">已更新 69 节内容，共计 105150 字，演示截图：521
+                  张，持续爆肝中...</p>
+
+                <!-- 文章发布时间、所属分类 -->
+                <p class="flex items-center font-normal text-gray-400 text-sm dark:text-gray-400">
+                  <!-- 发布时间 -->
+                  <svg class="inline w-3 h-3 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
+                       xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 1v3m5-3v3m5-3v3M1 7h18M5 11h10M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+                  </svg>
+                  2023-10-22
+
+                  <!-- 所属分类 -->
+                  <svg class="inline w-3 h-3 ml-5 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
+                       xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M1 5v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H1Zm0 0V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H1Z" />
+                  </svg>
+                  <a href="#" class="text-gray-400 hover:underline">Java</a>
+                </p>
+
+              </div>
+            </div>
+
           </div>
-          <!-- 搜索输入框 -->
-          <input type="text" id="search-navbar"
-                 class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                 placeholder="请输入关键词...">
+          <div class="col-span-2 md:col-span-1">
+            <div
+                class="bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+              <a href="#">
+                <img class="rounded-t-lg h-48 w-full"
+                     src="https://img.quanxiaoha.com/quanxiaoha/193dd1504ebb4f138085acb23619e0dd.jpg"
+                     alt="" />
+              </a>
+              <div class="p-5">
+                <a href="#">
+                  <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    从零手撸前后端分离博客（已更新11w+字）</h2>
+                </a>
+                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">已更新 69 节内容，共计 105150 字，演示截图：521
+                  张，持续爆肝中...</p>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- 分页 -->
+        <nav aria-label="Page navigation example" class="mt-10 flex justify-center">
+          <ul class="flex items-center -space-x-px h-10 text-base">
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <span class="sr-only">Previous</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M5 1 1 5l4 4" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+            </li>
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+            </li>
+            <li>
+              <a href="#" aria-current="page"
+                 class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+            </li>
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+            </li>
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+            </li>
+            <li>
+              <a href="#"
+                 class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <span class="sr-only">Next</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 6 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="m1 9 4-4-4-4" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-        <!-- 登录按钮，点击跳转到登录页面 -->
-        <div class="text-gray-900 ml-1 mr-1 hover:text-blue-700" @click="$router.push('/login')">登录</div>
-
-        <!-- 折叠菜单按钮，在小屏幕设备显示 -->
-        <button data-collapse-toggle="navbar-search" type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="navbar-search" aria-expanded="false">
-          <span class="sr-only">Open main menu</span> <!-- 辅助文本，用于屏幕阅读器 -->
-          <!-- 折叠菜单图标 -->
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-        </button>
       </div>
 
-      <!-- 菜单项，PC端显示 -->
-      <div class="items-center justify-between hidden   w-full md:flex md:w-auto md:order-1" id="navbar-search">
-        <!-- 搜索框（移动设备） -->
-        <div class="relative mt-3 md:hidden">
-          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-          </div>
-          <input type="text" id="search-navbar"
-                 class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                 placeholder="Search...">
-        </div>
 
-        <!-- 菜单项列表 -->
-        <ul
-        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <!-- 首页菜单项 -->
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">首页</a>
-          </li>
-          <!-- 分类菜单项 -->
-          <li>
-            <a href="#"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">分类</a>
-          </li>
-          <!-- 标签菜单项 -->
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">标签</a>
-          </li>
-          <!-- 归档菜单项 -->
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">归档</a>
-          </li>
-        </ul>
-      </div>
+      <!-- 右边侧边栏，占用一列 -->
+      <aside class="col-span-4 bg-green-500 md:col-span-1">右边栏</aside>
     </div>
-  </nav>
+
+  </main>
 </template>
 
+
 <script setup>
-import { onMounted } from 'vue'
-import { initCollapses } from 'flowbite'
-import router from "@/router/index.js";
-
-
-/* 使用 onMounted 钩子，当组件挂载时初始化 Flowbite 折叠组件 */
-onMounted(() => {
-  console.log('组件挂载，初始化 Flowbite');
-  initCollapses();  // 初始化折叠菜单功能
-})
+import Header from '@/layouts/frontend/components/Header.vue'
 </script>

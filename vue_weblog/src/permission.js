@@ -1,6 +1,7 @@
 import router from "@/router/index.js";
 import {getToken} from "@/composables/cookie.js";
 import {hidePageLoading, showMessage, showPageLoading} from "@/composables/util.js";
+import { useBlogSettingsStore } from '@/stores/blogsettings'
 
 //全局路由前置守卫
 //to:即将进入的目标
@@ -26,7 +27,14 @@ router.beforeEach((to, from, next) => {
         showMessage('请勿重复登陆','warning')
         //跳转到后台页面
         next({path:'/admin/index'})
-    } else{
+    } else if (!to.path.startsWith('/admin')) {
+        // 如果访问的非 /admin 前缀路由
+        // 引入博客设置 store
+        let blogSettingsStore = useBlogSettingsStore()
+        // 获取博客设置信息并保存到全局状态中
+        blogSettingsStore.getBlogSettings()
+        next()
+    }else{
         next();
     }
 })
