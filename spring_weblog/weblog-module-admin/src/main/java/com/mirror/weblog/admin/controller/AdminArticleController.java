@@ -1,6 +1,6 @@
 package com.mirror.weblog.admin.controller;
 
-import com.mirror.weblog.admin.model.vo.article.PublishArticleReqVO;
+import com.mirror.weblog.admin.model.vo.article.*;
 import com.mirror.weblog.admin.service.AdminArticleService;
 import com.mirror.weblog.common.aspect.ApiOperationLog;
 import com.mirror.weblog.common.utils.Response;
@@ -26,6 +26,37 @@ public class AdminArticleController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response publishArticle(@RequestBody @Validated PublishArticleReqVO publishArticleReqVO) {
         return articleService.publishArticle(publishArticleReqVO);
+    }
+
+
+    @PostMapping("/delete")
+//    @ApiOperation(value = "文章删除")
+    @ApiOperationLog(description = "文章删除")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Response deleteArticle(@RequestBody @Validated DeleteArticleReqVO deleteArticleReqVO) {
+        return articleService.deleteArticle(deleteArticleReqVO);
+    }
+
+    @PostMapping("/list")
+//    @ApiOperation(value = "查询文章分页数据")
+    @ApiOperationLog(description = "查询文章分页数据")
+    public Response findArticlePageList(@RequestBody @Validated FindArticlePageListReqVO findArticlePageListReqVO) {
+        return articleService.findArticlePageList(findArticlePageListReqVO);
+    }
+
+    @PostMapping("/detail")
+//    @ApiOperation(value = "查询文章详情")
+    @ApiOperationLog(description = "查询文章详情")
+    public Response findArticleDetail(@RequestBody @Validated FindArticleDetailReqVO findArticlePageListReqVO) {
+        return articleService.findArticleDetail(findArticlePageListReqVO);
+    }
+
+    @PostMapping("/update")
+//    @ApiOperation(value = "更新文章")
+    @ApiOperationLog(description = "更新文章")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Response updateArticle(@RequestBody @Validated UpdateArticleReqVO updateArticleReqVO) {
+        return articleService.updateArticle(updateArticleReqVO);
     }
 
 }

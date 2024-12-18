@@ -29,6 +29,7 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     TAG_NOT_EXISTED("20007", "该标签不存在！！"),
     FILE_UPLOAD_FAILED("20008", "文件上传失败！"),
     CATEGORY_NOT_EXISTED("20009", "提交的分类不存在！"),
+    ARTICLE_NOT_FOUND("20010", "该文章不存在！"),
 
     ;
 
