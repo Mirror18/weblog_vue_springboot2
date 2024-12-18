@@ -5,14 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author mirror
- */
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FindCategoryListRspVO {
+public class FindCategoryArticlePageListRspVO {
     private Long id;
-    private String name;
+    private String cover;
+    private String title;
+    /**
+     * 发布日期
+     */
+    private LocalDate createDate;
+
 }
