@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia'
-import {ref} from 'vue'
-import {getUserInfo} from '@/api/admin/user'
-import {removeToken} from "@/composables/cookie.js";
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { getUserInfo } from '@/api/admin/user'
+import { removeToken } from '@/composables/cookie'
 
 export const useUserStore = defineStore('user', () => {
         // 用户信息
@@ -11,7 +11,7 @@ export const useUserStore = defineStore('user', () => {
         function setUserInfo() {
             // 调用后头获取用户信息接口
             getUserInfo().then(res => {
-                if (res.success === true) {
+                if (res.success == true) {
                     userInfo.value = res.data
                 }
             })
@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
             userInfo.value = {}
         }
 
-        return {userInfo, setUserInfo, logout}
+        return { userInfo, setUserInfo, logout }
     },
     {
         // 开启持久化

@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-100">
+  <header class="sticky top-0 z-10">
     <nav class="bg-white border-gray-200 border-b dark:bg-gray-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <!-- 博客 LOGO 、博客名称 -->
@@ -171,10 +171,10 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { initCollapses, initDropdowns, initModals } from 'flowbite'
-import {useBlogSettingsStore} from '@/stores/blogsettings'
-import {useUserStore} from '@/stores/user'
-import {useRouter, useRoute} from 'vue-router'
-import {showMessage} from '@/composables/util'
+import { useBlogSettingsStore } from '@/stores/blogsettings'
+import { useUserStore } from '@/stores/user'
+import { useRouter, useRoute } from 'vue-router'
+import { showMessage } from '@/composables/util'
 
 // 初始化 flowbit 相关组件
 onMounted(() => {

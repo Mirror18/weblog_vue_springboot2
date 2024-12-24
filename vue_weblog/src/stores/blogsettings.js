@@ -17,5 +17,6 @@ export const useBlogSettingsStore = defineStore('blogsettings', () => {
         })
     }
 
+
     return { blogSettings, getBlogSettings }
 })

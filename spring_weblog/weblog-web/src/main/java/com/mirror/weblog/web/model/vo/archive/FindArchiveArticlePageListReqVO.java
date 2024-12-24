@@ -4,6 +4,9 @@ import com.mirror.weblog.common.model.BasePageQuery;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author mirror
+ */
 @Data
 @Builder
 //@ApiModel(value = "文章归档分页 VO")

@@ -9,3 +9,4 @@ export function getBlogSettingsDetail() {
 export function updateBlogSettings(data) {
     return axios.post("/admin/blog/settings/update", data)
 }
+

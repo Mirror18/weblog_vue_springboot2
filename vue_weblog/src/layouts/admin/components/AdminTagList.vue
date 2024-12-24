@@ -1,10 +1,3 @@
-<script setup>
-import { useTabList } from '@/composables/useTagList.js'
-import {ArrowDown} from "@element-plus/icons-vue";
-
-const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = useTabList()
-</script>
-
 <template>
   <!-- 左边：标签导航栏 -->
   <div class="fixed top-[64px] h-[44px] px-2 right-0 z-50 flex items-center bg-white transition-all duration-300 shadow" :style="{left: menuStore.menuWidth}">
@@ -29,12 +22,17 @@ const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = 
                 </template>
             </el-dropdown>
         </span>
-
   </div>
   <div class="h-[44px]"></div>
 </template>
 
-<style >
+<script setup>
+import { useTabList } from '@/composables/useTagList.js'
+
+const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = useTabList()
+</script>
+
+<style>
 .el-tabs__item {
   font-size: 12px;
   border: 1px solid #d8dce5!important;
@@ -93,4 +91,5 @@ const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = 
   cursor: not-allowed;
   color: #d1d5db;
 }
+
 </style>

@@ -1,32 +1,28 @@
-import router from "@/router/index.js";
-import {getToken} from "@/composables/cookie.js";
-import {hidePageLoading, showMessage, showPageLoading} from "@/composables/util.js";
+import router from '@/router/index'
+import { getToken } from '@/composables/cookie'
+import { showMessage } from '@/composables/util'
+import { showPageLoading, hidePageLoading } from '@/composables/util'
 import { useBlogSettingsStore } from '@/stores/blogsettings'
 
-//全局路由前置守卫
-//to:即将进入的目标
-//from 当前导航正要离开的路由
-//next 可额外添加的参数，手动控制跳转那个页面
+// 全局路由前置守卫
 router.beforeEach((to, from, next) => {
-    //必须设置，且只被调用一次
-    // next()
+    console.log('==> 全局路由前置守卫')
 
-    console.log('==> 全局路由前置守卫');
-
-    //展示页面加载loading
+    // 展示页面加载 Loading
     showPageLoading()
 
-    //若用户想要访问后台
-    //未登录，则强制跳转登录页
     let token = getToken()
-    if(!token && to.path.startsWith('/admin')) {
-        showMessage('请先登录','warning')
-        next({path:'/login'})
-    }else if(token && to.path==='/login'){
-        //若用户已经登陆，且重复访问登陆页面
-        showMessage('请勿重复登陆','warning')
-        //跳转到后台页面
-        next({path:'/admin/index'})
+
+    if (!token && to.path.startsWith('/admin')) {
+        // 若用户想访问后台（以 /admin 为前缀的路由）
+        // 未登录，则强制跳转登录页
+        showMessage('请先登录', 'warning')
+        next({ path: '/login' })
+    } else if (token && to.path == '/login') {
+        // 若用户已经登录，且重复访问登录页
+        showMessage('请勿重复登录', 'warning')
+        // 跳转后台首页
+        next({ path: '/admin/index' })
     } else if (!to.path.startsWith('/admin')) {
         // 如果访问的非 /admin 前缀路由
         // 引入博客设置 store
@@ -34,18 +30,17 @@ router.beforeEach((to, from, next) => {
         // 获取博客设置信息并保存到全局状态中
         blogSettingsStore.getBlogSettings()
         next()
-    }else{
-        next();
+    } else {
+        next()
     }
 })
 
-//后置守卫，不会改变导航本身
-router.afterEach((to, from, next) => {
+// 全局路由后置守卫
+router.afterEach((to, from) => {
+    // 动态设置页面 Titile
+    let title = (to.meta.title ? to.meta.title : '') + ' - Weblog'
+    document.title = title
 
-    //动态设置页面 title
-    let title = (to.meta.title ? to.meta.title : "") + '- weblog';
-    document.title = title;
-
-    //隐藏页面加载 loading
-    hidePageLoading();
+    // 隐藏页面加载 Loading
+    hidePageLoading()
 })

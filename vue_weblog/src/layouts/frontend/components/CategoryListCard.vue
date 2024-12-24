@@ -1,5 +1,5 @@
 <template>
-  <div v-if="categories.length > 1" class="w-full p-5 mb-3 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+  <div v-if="categories.length > 0" class="w-full p-5 mb-3 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
     <!-- 分类标题 -->
     <h2 class="flex items-center mb-2 font-bold text-gray-900 uppercase dark:text-white">
       <!-- 文件夹图标 -->

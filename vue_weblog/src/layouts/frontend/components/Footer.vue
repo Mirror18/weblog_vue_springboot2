@@ -6,7 +6,7 @@
             </span>
       <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
         <li>
-          备案号：<a href="#" class="mr-4 hover:underline md:mr-6 ">京ICP备2020016734号</a>
+          备案号：<a href="#" class="mr-4 hover:underline md:mr-6 ">AA</a>
         </li>
       </ul>
     </div>
