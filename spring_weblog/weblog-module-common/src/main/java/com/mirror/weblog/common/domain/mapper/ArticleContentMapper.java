@@ -4,7 +4,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.mirror.weblog.common.domain.dos.ArticleContentDO;
 
+/**
+ * @author: mirror
+ * @description: 文章
+ **/
 public interface ArticleContentMapper extends BaseMapper<ArticleContentDO> {
+
     /**
      * 根据文章 ID 删除记录
      * @param articleId
@@ -24,7 +29,6 @@ public interface ArticleContentMapper extends BaseMapper<ArticleContentDO> {
         return selectOne(Wrappers.<ArticleContentDO>lambdaQuery()
                 .eq(ArticleContentDO::getArticleId, articleId));
     }
-
 
     /**
      * 通过文章 ID 更新

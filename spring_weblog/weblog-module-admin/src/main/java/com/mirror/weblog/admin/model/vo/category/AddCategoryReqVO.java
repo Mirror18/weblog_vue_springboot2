@@ -1,5 +1,6 @@
 package com.mirror.weblog.admin.model.vo.category;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "添加分类 VO")
+@ApiModel(value = "添加分类 VO")
 public class AddCategoryReqVO {
 
     @NotBlank(message = "分类名称不能为空")

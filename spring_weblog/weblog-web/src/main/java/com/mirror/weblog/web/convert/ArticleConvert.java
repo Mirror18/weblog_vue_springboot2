@@ -20,7 +20,7 @@ public interface ArticleConvert {
     ArticleConvert INSTANCE = Mappers.getMapper(ArticleConvert.class);
 
     /**
-     * 将 DO 转化为 VO
+     * ArticleDO -> FindIndexArticlePageListRspVO
      * @param bean
      * @return
      */
@@ -28,7 +28,7 @@ public interface ArticleConvert {
     FindIndexArticlePageListRspVO convertDO2VO(ArticleDO bean);
 
     /**
-     * 将 DO 转化为归档文章 VO
+     * ArticleDO -> FindArchiveArticleRspVO
      * @param bean
      * @return
      */
@@ -36,9 +36,8 @@ public interface ArticleConvert {
     @Mapping(target = "createMonth", expression = "java(java.time.YearMonth.from(bean.getCreateTime()))")
     FindArchiveArticleRspVO convertDO2ArchiveArticleVO(ArticleDO bean);
 
-
     /**
-     * 将 DO 转换成分类文章 VO
+     * ArticleDO -> FindCategoryArticlePageListRspVO
      * @param bean
      * @return
      */

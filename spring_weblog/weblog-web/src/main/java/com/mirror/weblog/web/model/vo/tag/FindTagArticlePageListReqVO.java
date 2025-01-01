@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author mirror
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

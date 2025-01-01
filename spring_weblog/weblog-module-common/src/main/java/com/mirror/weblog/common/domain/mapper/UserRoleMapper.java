@@ -6,6 +6,9 @@ import com.mirror.weblog.common.domain.dos.UserRoleDO;
 
 import java.util.List;
 
+/**
+ * @author mirror
+ */
 public interface UserRoleMapper extends BaseMapper<UserRoleDO> {
     /**
      * 根据用户名查询

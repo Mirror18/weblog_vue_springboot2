@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * @author mirror
+ * @description: 响应参数工具类
  */
 @Data
 public class Response<T> implements Serializable {

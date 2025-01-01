@@ -1,5 +1,6 @@
 package com.mirror.weblog.admin.model.vo.tag;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +17,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "标签模糊查询 VO")
-public class SearchTagReqVO {
+@ApiModel(value = "标签模糊查询 VO")
+public class SearchTagsReqVO {
+
     @NotBlank(message = "标签查询关键词不能为空")
-    private String  key;
+    private String key;
 
 }

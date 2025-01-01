@@ -1,6 +1,5 @@
 package com.mirror.weblog.web.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mirror.weblog.common.domain.dos.ArticleCategoryRelDO;
@@ -21,17 +20,25 @@ import com.mirror.weblog.web.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @author mirror
+ */
 @Service
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
+    @Autowired
+    private ArticleCategoryRelMapper articleCategoryRelMapper;
+    @Autowired
+    private ArticleMapper articleMapper;
 
     /**
      * 获取分类列表
@@ -45,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         // DO 转 VO
         List<FindCategoryListRspVO> vos = null;
-        if (!CollectionUtils.isEmpty(categoryDOS)) {
+        if (!org.springframework.util.CollectionUtils.isEmpty(categoryDOS)) {
             vos = categoryDOS.stream()
                     .map(categoryDO -> FindCategoryListRspVO.builder()
                             .id(categoryDO.getId())
@@ -56,13 +63,6 @@ public class CategoryServiceImpl implements CategoryService {
 
         return Response.success(vos);
     }
-
-
-
-    @Autowired
-    private ArticleCategoryRelMapper articleCategoryRelMapper;
-    @Autowired
-    private ArticleMapper articleMapper;
 
     /**
      * 获取分类下文章分页数据
@@ -88,7 +88,7 @@ public class CategoryServiceImpl implements CategoryService {
         List<ArticleCategoryRelDO> articleCategoryRelDOS = articleCategoryRelMapper.selectListByCategoryId(categoryId);
 
         // 若该分类下未发布任何文章
-        if (CollectionUtils.isEmpty(articleCategoryRelDOS)) {
+        if (org.springframework.util.CollectionUtils.isEmpty(articleCategoryRelDOS)) {
             log.info("==> 该分类下还未发布任何文章, categoryId: {}", categoryId);
             return PageResponse.success(null, null);
         }

@@ -1,6 +1,7 @@
 package com.mirror.weblog.admin.model.vo.tag;
 
 import com.mirror.weblog.common.model.BasePageQuery;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "查询分类分页数据入参 VO")
+@ApiModel(value = "查询分类分页数据入参 VO")
 public class FindTagPageListReqVO extends BasePageQuery {
 
     /**

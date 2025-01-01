@@ -7,8 +7,9 @@ import com.mirror.weblog.common.domain.dos.ArticleCategoryRelDO;
 import java.util.List;
 
 /**
- * @author mirror
- */
+ * @author: mirror
+ * @description: 文章分类关联
+ **/
 public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRelDO> {
 
     /**
@@ -62,4 +63,3 @@ public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRelD
                 .eq(ArticleCategoryRelDO::getCategoryId, categoryId));
     }
 }
-

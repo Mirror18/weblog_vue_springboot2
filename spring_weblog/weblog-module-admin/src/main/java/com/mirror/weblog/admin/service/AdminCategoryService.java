@@ -6,6 +6,9 @@ import com.mirror.weblog.admin.model.vo.category.FindCategoryPageListReqVO;
 import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 
+/**
+ * @author mirror
+ */
 public interface AdminCategoryService {
     /**
      * 添加分类

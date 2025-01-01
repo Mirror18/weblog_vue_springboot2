@@ -3,7 +3,7 @@ package com.mirror.weblog.admin.service;
 import com.mirror.weblog.admin.model.vo.tag.AddTagReqVO;
 import com.mirror.weblog.admin.model.vo.tag.DeleteTagReqVO;
 import com.mirror.weblog.admin.model.vo.tag.FindTagPageListReqVO;
-import com.mirror.weblog.admin.model.vo.tag.SearchTagReqVO;
+import com.mirror.weblog.admin.model.vo.tag.SearchTagsReqVO;
 import com.mirror.weblog.common.utils.PageResponse;
 import com.mirror.weblog.common.utils.Response;
 
@@ -11,15 +11,16 @@ import com.mirror.weblog.common.utils.Response;
  * @author mirror
  */
 public interface AdminTagService {
+
     /**
      * 添加标签集合
      * @param addTagReqVO
      * @return
      */
-    Response addTag(AddTagReqVO addTagReqVO);
+    Response addTags(AddTagReqVO addTagReqVO);
 
     /**
-     * 标签分页数据查询
+     * 查询标签分页
      * @param findTagPageListReqVO
      * @return
      */
@@ -34,15 +35,14 @@ public interface AdminTagService {
 
     /**
      * 根据标签关键词模糊查询
-     * @param searchTagReqVO
+     * @param searchTagsReqVO
      * @return
      */
-    Response searchTag(SearchTagReqVO searchTagReqVO);
+    Response searchTags(SearchTagsReqVO searchTagsReqVO);
 
     /**
      * 查询标签 Select 列表数据
      * @return
      */
     Response findTagSelectList();
-
 }

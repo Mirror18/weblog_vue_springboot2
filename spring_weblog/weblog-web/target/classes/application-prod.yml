@@ -3,3 +3,39 @@
 #=================================================================
 logging:
   config: classpath:logback-weblog.xml
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/weblog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: Weblog-HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      max-file-size: 10MB # 限制单个上传文件的最大大小为 10MB。如果上传的文件大小超过这个值，将会被拒绝上传。
+      max-request-size: 10MB # 限制整个上传请求的最大大小为 10MB。这包括所有上传文件的大小之和。如果请求总大小超过这个值，将会被拒绝。
+#  security:
+#    user:
+#      name: admin
+#      password: 123456
+
+
+
+#=================================================================
+# minio
+#=================================================================
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: mirror
+  secretKey: makai2001
+  bucketName: weblog

@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * @author mirror
+ * @description: 分页响应参数工具类
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

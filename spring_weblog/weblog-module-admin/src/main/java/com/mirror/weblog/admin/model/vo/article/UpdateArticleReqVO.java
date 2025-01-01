@@ -1,5 +1,6 @@
 package com.mirror.weblog.admin.model.vo.article;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +12,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * @author mirror
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "更新文章 VO")
+@ApiModel(value = "更新文章 VO")
 public class UpdateArticleReqVO {
 
     @NotNull(message = "文章 ID 不能为空")

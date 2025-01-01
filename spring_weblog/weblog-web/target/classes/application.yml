@@ -3,13 +3,14 @@ spring:
     # 激活环境
     active: dev
 
-  datasource:
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 20
-      auto-commit: true
-      idle-timeout: 30000
-      pool-name: Weblog-HikariCP
-      max-lifetime: 1800000
-      connection-timeout: 30000
-      connection-test-query: SELECT 1
+jwt:
+  # 签发人
+  issuer: mirror
+  # 秘钥
+  secret: FwEQmdctWwf0Gx7Tb0nUtQ7ZA9fB5io5+gLH6qedlyUvA24IzsI7YoSzzcMZxEX/+AaNpxdjII+HIfKZAN2H2A==
+  # token 过期时间（单位：分钟） 24*60
+  tokenExpireTime: 1440
+  # token 请求头中的 key 值
+  tokenHeaderKey: Authorization
+  # token 请求头中的 value 值前缀
+  tokenPrefix: Bearer

@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.extension.injector.methods.InsertBatchSomeColumn
 
 import java.util.List;
 
+/**
+ * @author mirror
+ */
 public class InsertBatchSqlInjector extends DefaultSqlInjector {
 
     @Override

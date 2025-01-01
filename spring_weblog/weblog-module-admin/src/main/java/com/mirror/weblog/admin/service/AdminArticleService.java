@@ -3,6 +3,9 @@ package com.mirror.weblog.admin.service;
 import com.mirror.weblog.admin.model.vo.article.*;
 import com.mirror.weblog.common.utils.Response;
 
+/**
+ * @author mirror
+ */
 public interface AdminArticleService {
     /**
      * 发布文章
@@ -38,7 +41,6 @@ public interface AdminArticleService {
      * @return
      */
     Response updateArticle(UpdateArticleReqVO updateArticleReqVO);
-
-
 }
+
 

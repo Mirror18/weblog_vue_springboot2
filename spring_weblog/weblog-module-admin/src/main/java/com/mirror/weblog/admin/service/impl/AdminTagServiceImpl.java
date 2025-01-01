@@ -1,7 +1,6 @@
 package com.mirror.weblog.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -19,6 +18,7 @@ import com.mirror.weblog.common.utils.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,80 +35,68 @@ public class AdminTagServiceImpl extends ServiceImpl<TagMapper, TagDO> implement
 
     @Autowired
     private TagMapper tagMapper;
+    @Autowired
+    private ArticleTagRelMapper articleTagRelMapper;
 
     /**
-     * 添加分类
+     * 添加标签集合
      *
      * @param addTagReqVO
      * @return
      */
     @Override
-    public Response addTag(AddTagReqVO addTagReqVO) {
-
-        //vo转DO
-        List<String> tags = addTagReqVO.getTags();
-        List<TagDO> tagDOS = tags.stream()
-                .map(tag -> TagDO.builder()
-                        .name(tag.trim())
+    public Response addTags(AddTagReqVO addTagReqVO) {
+        // vo 转 do
+        List<TagDO> tagDOS = addTagReqVO.getTags().stream()
+                .map(tagName -> TagDO.builder()
+                        .name(tagName.trim()) // 去掉前后空格
                         .createTime(LocalDateTime.now())
                         .updateTime(LocalDateTime.now())
                         .build())
                 .collect(Collectors.toList());
-        //批量插入
+
+        // 批量插入
         try {
             saveBatch(tagDOS);
         } catch (Exception e) {
             log.warn("该标签已存在", e);
         }
+
         return Response.success();
     }
 
-
+    /**
+     * 查询标签分页
+     *
+     * @param findTagPageListReqVO
+     * @return
+     */
     @Override
     public PageResponse findTagPageList(FindTagPageListReqVO findTagPageListReqVO) {
-        // 获取当前页、以及每页需要展示的数据数量
+        // 分页参数、条件参数
         Long current = findTagPageListReqVO.getCurrent();
         Long size = findTagPageListReqVO.getSize();
-
-
         String name = findTagPageListReqVO.getName();
         LocalDate startDate = findTagPageListReqVO.getStartDate();
         LocalDate endDate = findTagPageListReqVO.getEndDate();
 
+        // 分页查询
+        Page<TagDO> page = tagMapper.selectPageList(current, size, name, startDate, endDate);
 
-        // 执行分页查询
-        Page<TagDO> tagDOPage = tagMapper.selectPageList(current, size, name, startDate, endDate);
+        List<TagDO> records = page.getRecords();
 
-        List<TagDO> tagDOS = tagDOPage.getRecords();
-
-        // DO 转 VO
+        // do 转 vo
         List<FindTagPageListRspVO> vos = null;
-        if (!CollectionUtils.isEmpty(tagDOS)) {
-            vos = tagDOS.stream()
-                    .map(tagDO -> FindTagPageListRspVO.builder()
-                            .id(tagDO.getId())
-                            .name(tagDO.getName())
-                            .createTime(tagDO.getCreateTime())
-                            .build())
-                    .collect(Collectors.toList());
+        if (!org.springframework.util.CollectionUtils.isEmpty(records)) {
+            vos = records.stream().map(tagDO -> FindTagPageListRspVO.builder()
+                    .id(tagDO.getId())
+                    .name(tagDO.getName())
+                    .createTime(tagDO.getCreateTime())
+                    .build()).collect(Collectors.toList());
         }
 
-        return PageResponse.success(tagDOPage, vos);
+        return PageResponse.success(page, vos);
     }
-
-//    @Override
-//    public Response deleteTag(DeleteTagReqVO deleteTagReqVO) {
-//        // 标签 ID
-//        Long tagId = deleteTagReqVO.getId();
-//
-//        // 删除标签
-//        int count = tagMapper.deleteById(tagId);
-//
-//        return count == 1 ? Response.success() : Response.fail(ResponseCodeEnum.TAG_NOT_EXISTED);
-//    }
-
-    @Autowired
-    private ArticleTagRelMapper articleTagRelMapper;
 
     /**
      * 删除标签
@@ -134,27 +122,42 @@ public class AdminTagServiceImpl extends ServiceImpl<TagMapper, TagDO> implement
 
         return count == 1 ? Response.success() : Response.fail(ResponseCodeEnum.TAG_NOT_EXISTED);
     }
+
+    /**
+     * 根据标签关键词模糊查询
+     *
+     * @param searchTagsReqVO
+     * @return
+     */
     @Override
-    public Response searchTag(SearchTagReqVO searchTagReqVO) {
-        String key = searchTagReqVO.getKey();
+    public Response searchTags(SearchTagsReqVO searchTagsReqVO) {
+        String key = searchTagsReqVO.getKey();
+
+        // 执行模糊查询
         List<TagDO> tagDOS = tagMapper.selectByKey(key);
-        List<SelectRspVO> searchTagRspVOS = null;
-        if (!CollectionUtils.isEmpty(tagDOS)) {
-             searchTagRspVOS= tagDOS.stream()
+
+        // do 转 vo
+        List<SelectRspVO> vos = null;
+        if (!org.springframework.util.CollectionUtils.isEmpty(tagDOS)) {
+            vos = tagDOS.stream()
                     .map(tagDO -> SelectRspVO.builder()
-                            .value(tagDO.getId())
                             .label(tagDO.getName())
+                            .value(tagDO.getId())
                             .build())
                     .collect(Collectors.toList());
         }
-        return Response.success(searchTagRspVOS);
 
+        return Response.success(vos);
     }
 
-
+    /**
+     * 查询标签 Select 列表数据
+     *
+     * @return
+     */
     @Override
     public Response findTagSelectList() {
-        // 查询所有标签, Wrappers.emptyWrapper() 表示查询条件为空
+        // 查询所有标签
         List<TagDO> tagDOS = tagMapper.selectList(Wrappers.emptyWrapper());
 
         // DO 转 VO

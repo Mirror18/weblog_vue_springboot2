@@ -8,8 +8,9 @@ import com.mirror.weblog.common.domain.dos.ArticleTagRelDO;
 import java.util.List;
 
 /**
- * @author mirror
- */
+ * @author: mirror
+ * @description: 文章标签关联
+ **/
 public interface ArticleTagRelMapper extends InsertBatchMapper<ArticleTagRelDO> {
 
     /**
@@ -31,7 +32,6 @@ public interface ArticleTagRelMapper extends InsertBatchMapper<ArticleTagRelDO> 
         return selectList(Wrappers.<ArticleTagRelDO>lambdaQuery()
                 .eq(ArticleTagRelDO::getArticleId, articleId));
     }
-
 
     /**
      * 根据标签 ID 查询

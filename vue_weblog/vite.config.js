@@ -1,12 +1,23 @@
 import { fileURLToPath, URL } from 'node:url'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -20,16 +31,6 @@ export default defineConfig({
     alias: {
       // 定义一个别名 '@'，该别名对应于当前 JavaScript 模块文件所在目录下的 'src' 目录的绝对文件路径。
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-
-  server:{
-    proxy: {
-      '/api' : {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/,''),
-      }
     }
   }
 })

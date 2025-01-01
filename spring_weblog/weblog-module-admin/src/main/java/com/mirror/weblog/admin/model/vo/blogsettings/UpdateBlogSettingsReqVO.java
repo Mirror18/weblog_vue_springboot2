@@ -1,5 +1,6 @@
 package com.mirror.weblog.admin.model.vo.blogsettings;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = " 博客基础信息修改 VO")
+@ApiModel(value = " 博客基础信息修改 VO")
 public class UpdateBlogSettingsReqVO {
 
     @NotBlank(message = "博客 LOGO 不能为空")

@@ -1,5 +1,6 @@
 package com.mirror.weblog.admin.model.vo.tag;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "删除分类 VO")
+@ApiModel(value = "删除分类 VO")
 public class DeleteTagReqVO {
 
     @NotNull(message = "标签 ID 不能为空")

@@ -1,6 +1,7 @@
 package com.mirror.weblog.admin.model.vo.article;
 
 import com.mirror.weblog.common.model.BasePageQuery;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@ApiModel(value = "查询文章分页数据入参 VO")
+@ApiModel(value = "查询文章分页数据入参 VO")
 public class FindArticlePageListReqVO extends BasePageQuery {
 
     /**

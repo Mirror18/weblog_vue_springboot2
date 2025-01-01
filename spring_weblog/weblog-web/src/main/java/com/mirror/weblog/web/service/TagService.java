@@ -3,6 +3,9 @@ package com.mirror.weblog.web.service;
 import com.mirror.weblog.common.utils.Response;
 import com.mirror.weblog.web.model.vo.tag.FindTagArticlePageListReqVO;
 
+/**
+ * @author mirror
+ */
 public interface TagService {
     /**
      * 获取标签列表

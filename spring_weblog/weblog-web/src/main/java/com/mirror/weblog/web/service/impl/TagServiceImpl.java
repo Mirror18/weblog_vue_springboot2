@@ -1,6 +1,5 @@
 package com.mirror.weblog.web.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mirror.weblog.common.domain.dos.ArticleDO;
@@ -21,6 +20,7 @@ import com.mirror.weblog.web.service.TagService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,6 +32,10 @@ public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagMapper tagMapper;
+    @Autowired
+    private ArticleTagRelMapper articleTagRelMapper;
+    @Autowired
+    private ArticleMapper articleMapper;
 
     /**
      * 获取标签列表
@@ -45,7 +49,7 @@ public class TagServiceImpl implements TagService {
 
         // DO 转 VO
         List<FindTagListRspVO> vos = null;
-        if (!CollectionUtils.isEmpty(tagDOS)) {
+        if (!org.springframework.util.CollectionUtils.isEmpty(tagDOS)) {
             vos = tagDOS.stream()
                     .map(tagDO -> FindTagListRspVO.builder()
                             .id(tagDO.getId())
@@ -56,11 +60,6 @@ public class TagServiceImpl implements TagService {
 
         return Response.success(vos);
     }
-
-    @Autowired
-    private ArticleTagRelMapper articleTagRelMapper;
-    @Autowired
-    private ArticleMapper articleMapper;
 
     /**
      * 获取标签下文章分页列表
@@ -86,7 +85,7 @@ public class TagServiceImpl implements TagService {
         List<ArticleTagRelDO> articleTagRelDOS = articleTagRelMapper.selectByTagId(tagId);
 
         // 若该标签下未发布任何文章
-        if (CollectionUtils.isEmpty(articleTagRelDOS)) {
+        if (org.springframework.util.CollectionUtils.isEmpty(articleTagRelDOS)) {
             log.info("==> 该标签下还未发布任何文章, tagId: {}", tagId);
             return PageResponse.success(null, null);
         }
