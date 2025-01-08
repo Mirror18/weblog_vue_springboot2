@@ -4,9 +4,7 @@ import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @author: 犬小哈
- * @url: www.quanxiaoha.com
- * @date: 2023/11/9 10:05
+ * @author: mirror
  * @description: 文章被阅读事件
  **/
 

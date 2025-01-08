@@ -10,6 +10,9 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
+
+    // port: 3000 ,// 或者其他不冲突的端口号
+
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
